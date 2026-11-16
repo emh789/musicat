@@ -1,0 +1,10 @@
+= form_with(model: [:admin, stream], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_resource_pane_title
+    Destroy stream?
+    .mc_form_data_label_destroy= tag.i stream.title
+
+  %ul.mc_form_explanation
+    %li.mc_form_explanation_warning This action can not be undone.
+
+  .mc_form_actions
+    = f.submit 'Destroy Stream', data: { confirm: 'Are you sure?' },  class: :mca_form_submit_destroy

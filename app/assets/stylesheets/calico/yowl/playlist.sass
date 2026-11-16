@@ -1,0 +1,179 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+@use 'themes/turq' as theme
+
+
+.yowl_audio_playlist
+  display: grid
+  grid-template-areas: 'controls' 'tracklist' 'vendors'
+  max-width: 20rem
+  overflow: hidden
+  width: 20rem
+
+.yowl_audio_playlist_controls
+  align-items: center
+  border-bottom-width: border.$width
+  display: grid
+  grid-area: controls
+  grid-template-areas: 'playpause prev stop next repeat shuffle' 'progress progress progress progress progress progress'
+  justify-content: space-around
+  padding: 1.5rem 1.75rem
+  row-gap: 1.5rem
+
+.yowl_button
+  cursor: pointer
+  overflow: visible
+
+.yowl_button:focus
+  outline-width: 0
+
+#yowl_next
+  grid-area: next
+  height: 2rem
+  margin-top: 2rem
+  width: 1.75rem
+  svg
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+
+#yowl_play_pause
+  grid-area: playpause
+  height: 4rem
+  width: 3rem
+  svg
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+  .yowl_icon_pause
+    visibility: hidden
+
+#yowl_play_pause.amplitude-paused
+  .yowl_icon_pause
+    visibility: hidden
+  .yowl_icon_play
+    visibility: visible
+
+#yowl_play_pause.amplitude-playing
+  .yowl_icon_pause
+    visibility: visible
+  .yowl_icon_play
+    visibility: hidden
+
+#yowl_prev
+  grid-area: prev
+  height: 2rem
+  margin-top: 2rem
+  width: 1.75rem
+  svg
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+
+#yowl_repeat
+  grid-area: repeat
+  height: 1.25rem
+  margin-top: 2rem
+  width: 1.25rem
+  svg
+    filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+
+#yowl_shuffle
+  grid-area: shuffle
+  height: 1.25rem
+  margin-top: 2rem
+  width: 1.25rem
+  svg
+    filter: drop-shadow(0 0 0.5px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+
+#yowl_stop
+  grid-area: stop
+  height: 1.6rem
+  margin-top: 2rem
+  width: 1.75rem
+  svg
+    filter: drop-shadow(0 0 1px rgba(0,0,0,0.5))
+    width: 100%
+    height: auto
+
+#yowl_progress
+  cursor: pointer
+  overflow: visible
+
+#yowl_progress[value]
+  -webkit-appearance: none
+  appearance: none
+  grid-area: progress
+  width: 100%
+
+.yowl_tracklist
+  grid-area: tracklist
+  margin: margin.$third 0
+
+.yowl_track
+  cursor: pointer
+  font-family: font.$family-application
+  font-size: 0.8rem
+
+.yowl_track_duration
+  padding: margin.$quarter
+  padding-right: 1rem
+  text-align: right
+  vertical-align: top
+
+.yowl_track_number
+  padding: margin.$quarter
+  padding-left: 1rem
+  text-align: right
+  vertical-align: top
+  &:after
+    content: '.'
+
+.yowl_track_title
+  padding: margin.$quarter
+  vertical-align: top
+  width: 100%
+
+.yowl_vendors
+  border-top-width: border.$width
+  grid-area: vendors
+  padding: margin.$half
+
+.yowl_vendor_links
+  text-align: center
+  list-style-type: none
+  margin: 0 0 margin.$quarter 0
+  padding: 0
+
+.yowl_vendor_link
+  display: inline-block
+  font-family: font.$family-description
+  font-weight: bold
+  list-style-type: none
+  margin: margin.$third
+  text-indent: 0
+  white-space: nowrap
+
+
+@media #{screen.$px-480}
+  .yowl_audio_playlist
+    border-bottom-width: border.$width
+    border-top-width: border.$width
+
+
+@media #{screen.$px481-767}
+  .yowl_audio_playlist
+    border-radius: border.$radius-narrow
+    border-width: border.$width
+
+
+@media #{screen.$px768-}
+  .yowl_audio_playlist
+    border-radius: border.$radius
+    border-width: border.$width

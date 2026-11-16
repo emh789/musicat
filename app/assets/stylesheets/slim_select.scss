@@ -1,0 +1,843 @@
+@use 'calico/spec/font';
+@use 'calico/spec/margin';
+@use 'calico/spec/palette_dark' as dark;
+@use 'calico/spec/palette_light' as light;
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --ss-primary-color: dark.$fg;
+    --ss-bg-color: rgba(016,016,016,1);
+    --ss-font-color: dark.$fg;
+    --ss-placeholder-color: dark.$fg;
+    --ss-disabled-color: dark.$fg;
+    --ss-border-color: dark.$border;
+    --ss-highlight-color: dark.$highlight-bg;
+    --ss-focus-color: var(--ss-highlight-color);
+    --ss-success-color: dark.$fg-link;
+    --ss-error-color: dark.$admin-fg-warning;
+  }
+}
+
+
+@media screen and (prefers-color-scheme: light) {
+  :root {
+    --ss-primary-color: light.$fg;
+    --ss-bg-color: rgba(255,255,255,1);
+    --ss-font-color: light.$fg;
+    --ss-placeholder-color: light.$fg;
+    --ss-disabled-color: light.$fg;
+    --ss-border-color: light.$border;
+    --ss-highlight-color: light.$highlight-bg;
+    --ss-focus-color: var(--ss-highlight-color);
+    --ss-success-color: light.$fg-link;
+    --ss-error-color: light.$admin-fg-warning;
+  }
+}
+
+:root {
+  // // Colors
+  // --ss-primary-color: #5897fb;
+  // --ss-bg-color: #ffffff;
+  // --ss-font-color: #4d4d4d;
+  // --ss-placeholder-color: #8d8d8d;
+  // --ss-disabled-color: #dcdee2;
+  // --ss-border-color: #dcdee2;
+  // --ss-highlight-color: #fffb8c;
+  // --ss-focus-color: var(--ss-primary-color);
+  // --ss-success-color: #00b755;
+  // --ss-error-color: #dc3545;
+
+  // Heights
+  --ss-main-height: 40px;
+  --ss-content-height: 300px;
+  --ss-modal-height: 85vh;
+  --ss-modal-width: min(90vw, 400px);
+  --ss-search-height: var(--ss-main-height);
+  --ss-option-height: var(--ss-main-height);
+
+  // Spacing
+  --ss-spacing-l: 9px;
+  --ss-spacing-m: 7px;
+  --ss-spacing-s: 5px;
+
+  // Misc
+  --ss-animation-timing: 0.2s;
+  --ss-border-radius: 4px;
+  --ss-modal-z-index: 1000001;
+}
+
+// Animation keyframes
+@keyframes ss-valueIn {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes ss-valueOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+// Misc classes
+.ss-hide {
+  display: none !important;
+}
+
+// Main container
+.ss-main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  color: var(--ss-font-color);
+  min-height: var(--ss-main-height);
+  width: 100%;
+  padding: 0 var(--ss-spacing-s);
+  cursor: pointer;
+  border: 1px solid var(--ss-border-color);
+  border-radius: var(--ss-border-radius);
+  background-color: var(--ss-bg-color);
+  outline: 0;
+  box-sizing: border-box;
+  transition:
+    background-color var(--ss-animation-timing),
+    border-radius var(--ss-animation-timing);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: background-color var(--ss-animation-timing);
+  }
+
+  overflow: hidden;
+
+  &:focus {
+    box-shadow: 0 0 5px var(--ss-focus-color);
+  }
+
+  &.ss-disabled {
+    background-color: var(--ss-disabled-color);
+    cursor: not-allowed;
+
+    .ss-values {
+      .ss-disabled {
+        color: var(--ss-font-color);
+      }
+
+      .ss-value {
+        .ss-value-delete {
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  &.ss-dir-above {
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+  }
+  &.ss-dir-below {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
+  .ss-values {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: center;
+    align-self: stretch;
+    gap: var(--ss-spacing-m);
+    flex: 1 1 0%;
+    min-width: 0; // Allow container to shrink below content width
+    max-width: 100%;
+    padding: var(--ss-spacing-s) 0;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    // When multiString is enabled, values container holds a single text line
+    &:has(.ss-multi-string) {
+      flex-wrap: nowrap;
+      gap: 0;
+    }
+
+    // Single-line value text fills space before the arrow/deselect siblings
+    &:has(.ss-single),
+    &:has(.ss-placeholder) {
+      flex-wrap: nowrap;
+    }
+
+    // Shared layout for single value, placeholder, and multiString text
+    .ss-single,
+    .ss-placeholder,
+    .ss-multi-string {
+      display: block;
+      flex: 1 1 0%;
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
+      margin: 0;
+      padding: 0 var(--ss-spacing-m) 0 calc(var(--ss-spacing-l) - var(--ss-spacing-s));
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      box-sizing: border-box;
+    }
+
+    .ss-placeholder {
+      color: var(--ss-placeholder-color);
+    }
+
+    // Max is used to display max number of values
+    .ss-max {
+      display: flex;
+      user-select: none;
+      align-items: center;
+      width: fit-content;
+      font-size: 12px;
+      color: var(--ss-bg-color);
+      line-height: 1;
+      padding: var(--ss-spacing-s) var(--ss-spacing-m);
+      background-color: var(--ss-primary-color);
+      border-radius: var(--ss-border-radius);
+    }
+
+    // Used for the selected values
+    .ss-value {
+      display: flex;
+      user-select: none;
+      align-items: center;
+      width: fit-content;
+      max-width: 100%; // Ensure value doesn't exceed container width
+      background-color: var(--ss-primary-color);
+      border-radius: var(--ss-border-radius);
+      animation-name: ss-valueIn;
+      animation-duration: var(--ss-animation-timing);
+      animation-timing-function: ease-out;
+      animation-fill-mode: both;
+
+      @media (prefers-reduced-motion: reduce) {
+        animation: none;
+      }
+
+      &.ss-value-out {
+        animation-name: ss-valueOut;
+        animation-duration: var(--ss-animation-timing);
+        animation-timing-function: ease-out;
+      }
+
+      // Keyboard highlight while search is focused (Left/Right on empty input)
+      &.ss-highlighted {
+        box-shadow: inset 0 0 0 2px var(--ss-bg-color);
+        outline: 2px solid var(--ss-font-color);
+        outline-offset: -2px;
+      }
+
+      .ss-value-text {
+        flex: 1; // Take up available space in flex container
+        min-width: 0; // Allow text to shrink
+        font-size: 12px;
+        line-height: 1;
+        color: var(--ss-bg-color);
+        padding: var(--ss-spacing-s) var(--ss-spacing-m);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .ss-value-delete {
+        display: flex;
+        align-items: center;
+        height: var(--ss-spacing-l);
+        width: var(--ss-spacing-l);
+        padding: var(--ss-spacing-s) var(--ss-spacing-m);
+        cursor: pointer;
+        border-left: solid 1px var(--ss-bg-color);
+        box-sizing: content-box;
+
+        svg {
+          height: var(--ss-spacing-l);
+          width: var(--ss-spacing-l);
+
+          path {
+            fill: none;
+            stroke: var(--ss-bg-color);
+            stroke-width: 18;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+          }
+        }
+      }
+    }
+  }
+
+  .ss-deselect {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: auto;
+    padding: 0 var(--ss-spacing-m) 0 var(--ss-spacing-m);
+
+    svg {
+      width: 8px;
+      height: 8px;
+
+      path {
+        fill: none;
+        stroke: var(--ss-font-color);
+        stroke-width: 20;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+    }
+  }
+
+  .ss-arrow {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 12px;
+    height: 12px;
+    margin: auto var(--ss-spacing-m) auto var(--ss-spacing-m);
+
+    path {
+      fill: none;
+      stroke: var(--ss-font-color);
+      stroke-width: 18;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition-timing-function: ease-out;
+      transition: var(--ss-animation-timing);
+    }
+  }
+}
+
+// Visually hidden live region for screen reader search announcements
+.ss-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Content container
+.ss-content {
+  position: absolute; // default position
+  display: flex;
+  height: auto;
+  flex-direction: column;
+  width: auto;
+  max-height: var(--ss-content-height);
+  box-sizing: border-box;
+  border: solid 1px var(--ss-border-color);
+  background-color: var(--ss-bg-color);
+  min-height: 0;
+  transition:
+    transform var(--ss-animation-timing),
+    opacity var(--ss-animation-timing);
+  opacity: 0;
+  transform: scaleY(0);
+  overflow: hidden;
+  z-index: 10000;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &.ss-relative {
+    position: relative;
+    height: 100%;
+    // In-flow panels (alwaysOpen / contentLocation) must not overlay sticky headers
+    z-index: auto;
+  }
+
+  &.ss-fixed {
+    position: fixed;
+  }
+
+  &.ss-dir-above {
+    transform-origin: center bottom;
+    flex-direction: column-reverse;
+    border-top-left-radius: var(--ss-border-radius);
+    border-top-right-radius: var(--ss-border-radius);
+  }
+
+  &.ss-dir-below {
+    transform-origin: center top;
+    border-bottom-left-radius: var(--ss-border-radius);
+    border-bottom-right-radius: var(--ss-border-radius);
+  }
+
+  &.ss-open {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+
+  .ss-search {
+    flex: 0 1 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--ss-spacing-s);
+    min-height: var(--ss-search-height);
+    padding: 0 var(--ss-spacing-s);
+    box-sizing: border-box;
+    border-bottom: 1px solid var(--ss-border-color);
+
+    input {
+      display: inline-flex;
+      font-size: inherit;
+      line-height: inherit;
+      flex: 1 1 auto;
+      width: 100%;
+      min-width: 0;
+      min-height: 0;
+      height: 100%;
+      padding: 0 var(--ss-spacing-m);
+      margin: 0;
+      border: none;
+      background-color: var(--ss-bg-color);
+      outline: 0;
+      text-align: left;
+      box-sizing: border-box;
+
+      &::placeholder {
+        color: var(--ss-placeholder-color);
+        vertical-align: middle;
+      }
+
+      &:focus {
+        box-shadow: none;
+      }
+    }
+
+    .ss-addable {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      width: 22px;
+      height: 22px;
+      margin: auto 0;
+      padding: 0;
+      border: none;
+      border-radius: var(--ss-border-radius);
+      background-color: var(--ss-primary-color);
+
+      svg {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: 10px;
+        height: 10px;
+        margin: 0;
+
+        path {
+          fill: none;
+          stroke: var(--ss-bg-color);
+          stroke-width: 18;
+          stroke-linecap: round;
+          stroke-linejoin: round;
+        }
+      }
+    }
+
+    .ss-selectall {
+      margin-left: auto;
+    }
+  }
+
+  // Shared select-all checkbox (search row + optgroup actions)
+  .ss-selectall {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    gap: var(--ss-spacing-s);
+    transition: opacity var(--ss-animation-timing);
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    span {
+      flex: 0 1 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: calc(100% * 0.65);
+      color: var(--ss-font-color);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    svg {
+      flex: 0 0 auto;
+      width: 15px;
+      height: 15px;
+      border-radius: calc(var(--ss-border-radius) * 0.5);
+
+      path {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition:
+          fill var(--ss-animation-timing),
+          stroke var(--ss-animation-timing);
+      }
+
+      // Checkbox box
+      path:first-child {
+        fill: var(--ss-bg-color);
+        stroke: var(--ss-border-color);
+        stroke-width: 8;
+      }
+
+      // Check mark — hidden until selected
+      path:last-child {
+        fill: none;
+        stroke: transparent;
+        stroke-width: 10;
+      }
+    }
+
+    &.ss-selected {
+      svg {
+        animation-name: ss-valueIn;
+        animation-duration: var(--ss-animation-timing);
+        animation-timing-function: ease-out;
+
+        @media (prefers-reduced-motion: reduce) {
+          animation: none;
+        }
+
+        path:first-child {
+          fill: var(--ss-primary-color);
+          stroke: var(--ss-primary-color);
+        }
+
+        path:last-child {
+          stroke: var(--ss-bg-color);
+        }
+      }
+    }
+  }
+
+  &.ss-dir-above .ss-search {
+    border-bottom: none;
+    border-top: 1px solid var(--ss-border-color);
+  }
+
+  .ss-list {
+    flex: 1 1 auto;
+    height: auto;
+    min-height: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-color: var(--ss-primary-color) var(--ss-bg-color);
+
+    .ss-error {
+      color: var(--ss-error-color);
+      padding: var(--ss-spacing-l);
+    }
+
+    .ss-searching {
+      color: var(--ss-font-color);
+      padding: var(--ss-spacing-l);
+    }
+
+    .ss-optgroup {
+      .ss-option {
+        min-height: 0;
+        transition:
+          max-height var(--ss-animation-timing) ease,
+          min-height var(--ss-animation-timing) ease,
+          opacity var(--ss-animation-timing) ease,
+          padding-top var(--ss-animation-timing) ease,
+          padding-bottom var(--ss-animation-timing) ease,
+          margin-top var(--ss-animation-timing) ease,
+          margin-bottom var(--ss-animation-timing) ease;
+      }
+
+      &:not(.ss-close):not(.ss-open) .ss-option {
+        min-height: var(--ss-option-height);
+      }
+
+      &.ss-open {
+        .ss-option {
+          min-height: var(--ss-option-height);
+          max-height: 100px;
+          opacity: 1;
+          overflow: visible;
+        }
+      }
+
+      // If optgroup has close, hide all options
+      &.ss-close {
+        .ss-option {
+          min-height: 0 !important;
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          margin-top: 0 !important;
+          margin-bottom: 0 !important;
+          max-height: 0;
+          opacity: 0;
+          overflow: hidden;
+        }
+      }
+
+      .ss-optgroup-label {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        min-height: var(--ss-option-height);
+        padding: 0 var(--ss-spacing-l);
+
+        .ss-optgroup-label-text {
+          flex: 1 1 auto;
+          font-weight: bold;
+          color: var(--ss-font-color);
+        }
+
+        // If optgroup has arrow, make label clickable
+        &:has(.ss-arrow) {
+          cursor: pointer;
+        }
+
+        .ss-optgroup-actions {
+          flex: 0 1 auto;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          gap: var(--ss-spacing-m);
+
+          .ss-closable {
+            flex: 0 1 auto;
+            display: flex;
+            flex-direction: row;
+            cursor: pointer;
+
+            .ss-arrow {
+              flex: 1 1 auto;
+              width: 10px;
+              height: 10px;
+
+              path {
+                fill: none;
+                stroke: var(--ss-font-color);
+                stroke-width: 18;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+                transition-timing-function: ease-out;
+                transition: var(--ss-animation-timing);
+              }
+            }
+          }
+        }
+      }
+
+      .ss-option {
+        padding: 0 var(--ss-spacing-l) 0 calc(var(--ss-spacing-l) * 3);
+      }
+    }
+
+    .ss-option {
+      display: flex;
+      align-items: center;
+      min-height: var(--ss-option-height);
+      padding: 0 var(--ss-spacing-l);
+      white-space: normal;
+      color: var(--ss-font-color);
+      cursor: pointer;
+      user-select: none;
+      content-visibility: auto;
+      contain-intrinsic-size: auto var(--ss-option-height);
+
+      &:hover:not(.ss-disabled) {
+        color: var(--ss-bg-color);
+        background-color: var(--ss-primary-color);
+        border-left: 5px solid var(--ss-primary-color);
+        transition: border-left var(--ss-animation-timing) ease;
+      }
+
+      &.ss-highlighted,
+      &:not(.ss-disabled).ss-selected {
+        color: var(--ss-bg-color);
+        background-color: var(--ss-primary-color);
+      }
+
+      &.ss-disabled {
+        cursor: not-allowed;
+        background-color: var(--ss-disabled-color);
+
+        &:hover {
+          color: var(--ss-font-color);
+        }
+      }
+
+      // Sub div wrapper for highlighting text
+      .ss-search-highlight {
+        display: inline-block;
+        background-color: var(--ss-highlight-color);
+      }
+    }
+
+    .ss-search {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      min-height: var(--ss-search-height);
+      padding: 0 var(--ss-spacing-l);
+    }
+  }
+}
+
+// Modal overlay
+.ss-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ss-modal-z-index);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--ss-spacing-l);
+  box-sizing: border-box;
+  background-color: rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity var(--ss-animation-timing);
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  &.ss-open {
+    opacity: 1;
+  }
+
+  .ss-modal-dialog {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: var(--ss-modal-width);
+    max-height: var(--ss-modal-height);
+    overflow: visible;
+
+    .ss-modal-title {
+      flex: 0 0 auto;
+      width: 100%;
+      padding: 0 0 var(--ss-spacing-l);
+      box-sizing: border-box;
+      font-weight: bold;
+      font-size: 1.35em;
+      line-height: 1.3;
+      color: #ffffff;
+      text-align: left;
+      background: none;
+      border: none;
+    }
+
+    .ss-content {
+      &.ss-modal-content {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        width: 100% !important;
+        max-width: 100%;
+        max-height: var(--ss-modal-height);
+        min-height: 0;
+        margin: 0 !important;
+        transform-origin: center center;
+        z-index: 1;
+        border-radius: var(--ss-border-radius);
+        overflow: visible;
+
+        .ss-modal-close {
+          position: absolute;
+          top: 0;
+          right: 0;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 28px;
+          height: 28px;
+          padding: 0;
+          margin: 0;
+          border: none;
+          border-radius: var(--ss-border-radius);
+          background-color: var(--ss-bg-color);
+          color: var(--ss-font-color);
+          cursor: pointer;
+          outline: 0;
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+          transform: translate(50%, -50%);
+
+          &:hover {
+            background-color: var(--ss-bg-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+          }
+
+          &:focus {
+            box-shadow: 0 0 5px var(--ss-focus-color);
+          }
+
+          svg {
+            width: 10px;
+            height: 10px;
+
+            path {
+              fill: none;
+              stroke: currentColor;
+              stroke-width: 20;
+              stroke-linecap: round;
+              stroke-linejoin: round;
+            }
+          }
+        }
+
+        .ss-list {
+          min-height: 0;
+          overflow-x: hidden;
+          overflow-y: auto;
+          border-radius: 0 0 var(--ss-border-radius) var(--ss-border-radius);
+          scrollbar-color: var(--ss-primary-color) var(--ss-bg-color);
+        }
+
+        .ss-search.ss-hide ~ .ss-list {
+          border-radius: var(--ss-border-radius);
+        }
+
+        &.ss-dir-above,
+        &.ss-dir-below {
+          flex-direction: column;
+          transform-origin: center center;
+        }
+      }
+    }
+  }
+}

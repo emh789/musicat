@@ -1,0 +1,28 @@
+@use 'border'
+@use 'font'
+@use 'margin'
+
+@mixin select
+  border-width: border.$width
+  cursor: pointer
+  font-family: font.$family-application
+  font-size: 0.9em
+  padding: margin.$quarter margin.$half
+  text-align: center
+
+@mixin select_aux
+  border-width: border.$width
+  cursor: pointer
+  font-family: font.$family-application
+  font-size: 0.9em
+  padding: margin.$quarter
+  text-align: left
+
+@mixin form-ok
+    border-width: border.$width
+    border-radius: border.$radius-wide
+    cursor: pointer
+    font-family: font.$family-application
+    font-size: 1rem
+    font-weight: bold
+    padding: margin.$half margin.$one

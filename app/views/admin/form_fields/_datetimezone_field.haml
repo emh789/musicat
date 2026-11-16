@@ -1,0 +1,10 @@
+- if not local_assigns[:step] then step = nil end
+
+%fieldset.mca_form_attribute
+  = form.label heading, class: :mca_form_label
+  .mca_form_multi
+    = form.datetime_local_field attribute, autocomplete: :off, class: :mca_form_input_select_multi, step: step
+    = form.select zone, selectable.time_zones, {}, class: :mca_form_input_select
+
+%script
+  = "new SlimSelect({ select: '\##{form.field_id(zone)}', settings: { modal: 'on' } });".html_safe

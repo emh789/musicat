@@ -1,0 +1,9 @@
+.mca_resource_pane_title
+  Upload picture
+
+= form_with model: [:admin, video], local: true, url: admin_video_picture_create_from_upload_path(video), class: :mca_form do |f|
+  .mca_form_data
+    = f.fields_for :pictures, f.object.pictures.build do |vp|
+      = render 'admin/form_fields/file_upload', attribute: :source_uploaded, form: vp
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

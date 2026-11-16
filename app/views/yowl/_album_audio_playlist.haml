@@ -1,0 +1,25 @@
+- if album.does_have_audio
+  .yowl_audio_playlist
+    .yowl_audio_playlist_controls
+      #yowl_play_pause.yowl_button.amplitude-play-pause{tabindex: -1}= render '/yowl/icons/play_pause'
+      #yowl_prev.yowl_button.amplitude-prev{tabindex: -1}= render '/yowl/icons/prev'
+      #yowl_stop.yowl_button.amplitude-stop{tabindex: -1}= render '/yowl/icons/stop'
+      #yowl_next.yowl_button.amplitude-next{tabindex: -1}= render '/yowl/icons/next'
+      #yowl_repeat.yowl_button.amplitude-repeat{tabindex: -1}= render '/yowl/icons/repeat'
+      #yowl_shuffle.yowl_button.amplitude-shuffle{tabindex: -1}= render '/yowl/icons/shuffle'
+      %progress#yowl_progress.yowl_slider.amplitude-song-played-progress
+    %table.yowl_tracklist
+      %tbody
+        - audio = album.album_audio_sorted
+        - audio.each_index do |i|
+          %tr.yowl_track.amplitude-song-container.amplitude-play{data: {'amplitude-song-index' => i}}
+            %td.yowl_track_number= audio[i].order
+            %td.yowl_track_title
+              %span.yowl_track_link{tabindex: 0}= audio[i].title
+            %td.yowl_track_duration= audio[i].duration_rounded_to_seconds
+    - if album.show_will_include_vendor_markdown_links
+      .yowl_vendors
+        = parser_vendor_links(album.vendor_markdown_links)
+
+  = yowl_amplitude_init(audio).html_safe
+  = yowl_amplitude_progress_bar.html_safe

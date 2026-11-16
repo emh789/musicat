@@ -1,0 +1,4 @@
+.mca_index_joined_resource
+  %dh.mca_index_joined_resource_heading= resource_joined_audio_count_statement(resource, punctuated: true)
+  - resource.audio_sorted.each do |audio|
+    %dd.mca_index_joined_resource_data= audio.title_for_display

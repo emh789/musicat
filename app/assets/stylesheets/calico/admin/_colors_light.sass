@@ -1,0 +1,79 @@
+@use 'sass:color'
+@use '../spec/border'
+@use '../spec/media_screen' as screen
+@use '../spec/palette_light' as light
+
+@media screen and (prefers-color-scheme: light)
+
+  .musicat_admin
+    background-color: light.$bg1
+    border-color: light.$border
+    color: light.$fg
+
+  .mca_header
+    background-color: light.$admin-bg1
+
+  .mca_header_nav_button
+    background-color: light.$button-bg
+
+  .mca_header_nav_select
+    background-color: light.$button-bg
+
+  .mca_help_markup_demo_example_input, .mca_help_markup_demo_example_output
+    border-color: light.$fg-mid
+
+  .mca_resource_joins_button
+    background-color: light.$button-bg
+
+  .mca_resource_header, .mca_resource_header_with_thumbnail
+    background-color: light.$admin-bg2
+
+  .mca_form_button_post, .mc_form_form_button_bulk_post
+    background-color: light.$button-bg
+    &:hover
+      background-color: light.$admin-bg2
+    &:active, &:focus
+      background-color: light.$admin-bg2
+      color: light.$highlight-fg
+
+  .mca_form_destroy
+    color: light.$fg
+    background-color: light.$button-bg
+    &:hover, &:active, &:focus
+      background-color: light.$admin-warning-bg
+      color: light.$admin-warning-fg
+
+  .mca_form_error
+    color: light.$admin-error-fg
+
+  .mca_form_errors
+    background-color: inherit
+    color: light.$admin-error-fg
+
+  .mca_form_input_checkbox_visible
+    background-color: light.$bg1
+    border-color: light.$border
+
+  .mca_form_input_checkbox_legacy:checked + .mca_form_input_checkbox_visible
+    background-color: light.$checkbox-bg
+    background-image: url('font-awesome/check.svg')
+    background-size: cover
+
+  .mca_form_input_destroybox_visible
+    background-color: light.$bg1
+    border-color: light.$border
+
+  .mca_form_input_destroybox_legacy:checked + .mca_form_input_destroybox_visible
+    background-color: light.$destroybox-bg
+    background-image: url('font-awesome/xmark.svg')
+    background-size: 100% 100%
+
+  .mca_form_joins_heading
+    background-color: light.$bg-th
+
+  .mca_form_submit
+    background-color: light.$button-bg
+    color: light.$fg
+    border-color: light.$border
+    &:hover, &:active, &:focus
+      background-color: light.$admin-bg2

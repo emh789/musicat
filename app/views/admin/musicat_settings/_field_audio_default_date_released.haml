@@ -1,0 +1,7 @@
+.mca_form_attribute
+  = form.label :audio_default_date_released_enabled, class: :mca_form_label
+  = form.check_box :audio_default_date_released_enabled, class: :mca_form_input_checkbox_legacy
+  = form.label :audio_default_date_released_enabled, '&nbsp;'.html_safe, class: :mca_form_input_checkbox_visible, tabindex: 0
+  %aside.mca_form_explanation
+    Assign the following date to new audio
+  = form.date_field :audio_default_date_released, class: :mca_form_input_date

@@ -1,0 +1,13 @@
+.mca_resource_pane_title
+  Destroy article?
+  .mca_form_label_destroy= tag.i article.title
+
+%ul.mca_form_destroy_explanation
+  %li Article text will be erased.
+  %li Article metadata will be erased.
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, article], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Article', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

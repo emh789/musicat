@@ -1,0 +1,47 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_welcome
+  display: grid
+  column-gap: margin.$one
+  grid-template-areas: 'text text' 'logo help'
+  grid-template-columns: min-content auto
+  row-gap: margin.$one
+  padding: margin.$one
+
+.mca_welcome_logo
+  @include border.shadowed
+  grid-area: logo
+  height: 12rem
+  width: 12rem
+  max-width: 12rem
+
+.mca_welcome_text
+  font-family: font.$family-marquee
+  grid-area: text
+  text-align: center
+
+.mca_welcome_help
+  grid-area: help
+
+.mca_welcome_help_title
+  font-family: font.$family-application
+  font-size: 1.25em
+  margin: margin.$half
+
+.mca_welcome_help_contents
+  font-family: font.$family-application
+  margin-top: margin.$one
+
+.mca_welcome_help_contents_topic
+  margin-bottom: margin.$half
+
+@media #{screen.$px-480}
+  .mca_welcome
+
+  .mca_welcome_logo
+    height: 8rem
+    width: 8rem
+    max-width: 8rem

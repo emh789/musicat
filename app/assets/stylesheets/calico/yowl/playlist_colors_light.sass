@@ -1,0 +1,55 @@
+@use 'themes/turq' as theme
+
+@media screen and (prefers-color-scheme: light)
+  .amplitude-repeat-off
+    filter: saturate(0)
+
+  .amplitude-repeat-on
+
+  .amplitude-shuffle-off
+    filter: saturate(0)
+
+  .amplitude-shuffle-on
+
+  .yowl_audio_playlist
+    background-color: theme.$light-bg-tracks
+
+  .yowl_audio_playlist_controls
+    background-color: theme.$light-bg-controls
+
+  .yowl_audio_single
+    background-color: theme.$light-bg-controls
+
+  .yowl_icon_filled
+    fill: theme.$light-fg
+    stroke: theme.$light-fg
+    overflow: visible
+
+  .yowl_icon_traced
+    stroke: theme.$light-fg
+    overflow: visible
+
+  #yowl_progress
+    box-shadow: 0 0 theme.$shadow-width theme.$shadow-color
+
+  #yowl_progress[value]
+    background-color: theme.$light-neutral
+    box-shadow: 0 0 theme.$shadow-width theme.$shadow-color
+
+  #yowl_progress[value]::-webkit-progress-bar
+    background-color: theme.$light-neutral
+    box-shadow: 0 0 theme.$shadow-width theme.$shadow-color
+
+  #yowl_progress[value]::-webkit-progress-value
+    background-color: theme.$light-fg
+    box-shadow: 0 0 theme.$shadow-width theme.$shadow-color
+
+  #yowl_progress[value]::-moz-progress-bar
+    background-color: theme.$light-fg
+    box-shadow: 0 0 theme.$shadow-width theme.$shadow-color
+
+  .yowl_track.amplitude-active-song-container
+    background-color: theme.$light-highlight
+
+  .yowl_vendors
+    background-color: theme.$light-bg-controls

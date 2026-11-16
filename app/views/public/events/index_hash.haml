@@ -1,0 +1,11 @@
+= content_for :page_subtitle, 'events'
+
+.mc_events_index
+  = event_public_filter_select @musicat_settings, params, class: [:mc_active_filter, :mc_events_index_select, :color_bg_heading] 
+  - @events_calendar.each_pair do |year, events|
+    %table.mc_events_index_table
+      %caption.mc_events_index_by_year.color_bg_heading= year
+      - events.each do |event|
+        %tr.mc_events_index_event.mc_active_link_container{data: {url: public_event_path(event.id_public)}}
+          -# = render 'index_event_coverpicture', event: event
+          = render 'index_event_info', event: event

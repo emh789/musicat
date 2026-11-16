@@ -1,0 +1,103 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.mca_help_general
+  max-width: 30rem
+  padding: margin.$one
+
+.mca_help_general_title
+  font-family: font.$family-application
+  font-size: 1.25rem
+  text-align: center
+
+.mca_help_general_content_text
+  font-family: font.$family-data
+  margin: font.$line-height 0
+
+.mca_help_general_content_title
+  font-family: font.$family-application
+  font-size: 1.125
+  margin-top: margin.$one
+
+.mca_help_icons
+
+.mca_help_icons_example
+  align-content: start
+  column-gap: margin.$one
+  display: grid
+  grid-template-areas: 'icon title' 'icon description'
+  grid-template-columns: min-content auto
+  margin: margin.$one 0
+
+.mca_help_icons_example_icon
+  grid-area: icon
+
+.mca_help_icons_example_title
+  font-family: font.$family-application
+  font-weight: bold
+  grid-area: title
+  margin: 0rem
+
+.mca_help_icons_example_description
+  font-family: font.$family-data
+  grid-area: description
+  margin: 0rem
+
+.mca_help_markup
+  margin: margin.$one
+
+.mca_help_markup_aside
+  text-align: center
+  font-family: font.$family-application
+  font-size: 0.9rem
+  padding-bottom: margin.$one
+
+.mca_help_markup_overview
+  margin-bottom: margin.$one
+
+.mca_help_markup_overview_cases
+  margin-top: margin.$one
+
+.mca_help_markup_overview_case
+  margin-bottom: margin.$one
+
+.mca_help_markup_overview_case_example
+  font-family: font.$family-data
+
+.mca_help_markup_overview_case_header
+  font-family: font.$family-application
+  font-weight: bold
+
+.mca_help_markup_overview_summary
+  font-family: font.$family-data
+
+.mca_help_markup_heading
+  text-align: center
+  font-family: font.$family-application
+
+.mca_help_markup_demo
+  display: flex
+  flex-direction: row
+  margin: 0rem margin.$one
+
+.mca_help_markup_demo_heading
+  font-family: font.$family-application
+  padding: margin.$one 0rem
+
+.mca_help_markup_demo_example_input
+  border-top-width: border.$width
+  font-family: font.$family-monospace
+  font-size: 0.9rem
+  max-width: 32rem
+  padding: margin.$one
+  vertical-align: top
+  width: 50%
+
+.mca_help_markup_demo_example_output
+  border-top-width: border.$width
+  font-family: font.$family-text
+  max-width: 32rem
+  padding: margin.$one
+  width: 50%
+  vertical-align: top

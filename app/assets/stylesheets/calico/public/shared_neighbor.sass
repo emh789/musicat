@@ -1,0 +1,19 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.neighbor_nav_button
+  border-radius: border.$radius
+  border-width: border.$width
+  display: inline-block
+  font-family: font.$family-application
+  font-size: 1rem
+  font-weight: bold
+  height: 1.5rem
+  line-height: 1.5rem
+  margin: 0rem 0.5rem
+  min-width: 1.5rem
+  padding: margin.$quarter margin.$half
+  text-align: center
+  text-decoration: none
+  vertical-align: middle

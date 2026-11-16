@@ -1,0 +1,6 @@
+= content_for :page_subtitle, 'events'
+
+.mc_events_index
+  = event_public_filter_select @musicat_settings, params, class: [:mc_active_filter, :mc_events_index_select, :color_bg_heading]
+  %div.mc_events_index_none
+    [none]

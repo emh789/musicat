@@ -1,0 +1,9 @@
+%table.mca_show_joined_infopages
+  %caption.mca_show_joined_infopages_count
+    = resource_joined_infopages_count_label(resource)
+  - if resource.does_have_infopages
+    %tbody
+    - resource.joined_infopages_sorted.each do |joined_infopage|
+      %tr.mca_show_joined_infopage
+        %td.mca_show_joined_infopage_title
+          = infopage_admin_link_title(joined_infopage.infopage)

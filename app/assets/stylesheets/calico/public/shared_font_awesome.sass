@@ -1,0 +1,32 @@
+@use '../spec/margin'
+
+.mc_fa_icon
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
+  display: block
+  width: 100%
+  height: 100%
+  transform: scale(0.75, 0.75)
+  transform-origin: center
+  margin-left: auto
+  margin-right: auto
+  user-select: none
+
+.mc_fa_icon_mini
+  background-position: center
+  background-repeat: no-repeat
+  background-size: contain
+  display: inline-block
+  width: 1em
+  height: 1em
+  transform-origin: center
+  margin-left: margin.$eighth
+  margin-right: margin.$eighth
+  user-select: none
+
+.fa_next
+  background-image: url('font-awesome/right-long.svg')
+
+.fa_previous
+  background-image: url('font-awesome/left-long.svg')

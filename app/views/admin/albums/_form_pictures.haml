@@ -1,0 +1,35 @@
+.mca_resource_joins_buttons
+  = album_picture_admin_button_to_new_join_single(album)
+  = album_picture_admin_button_to_new_import(album)
+  = album_picture_admin_button_to_new_upload(album)
+  = album_picture_admin_button_to_new_join_by_keyword(album)
+
+.mca_resource_pane_title
+  = resource_joined_pictures_count_statement(album)
+
+- if album.does_have_pictures
+  = form_with(model: [:admin, album], url: admin_album_path(album, pane: :pictures), local: true, class: :mca_form, method: :patch) do |f|
+    .mca_form_attributes
+      .mca_form_attribute
+        = f.label :album_pictures_sort_method, 'Sort pictures by:', class: :mca_form_label
+        = f.select :album_pictures_sort_method, selectable.album_pictures_sorters, {selected: f.object.album_pictures_sort_method}, {class: :mca_form_input_select}
+      %table.mca_form_joins
+        %thead
+          %tr.mca_form_joins_headings
+            %th.mca_form_joins_heading{colspan: 2} picture
+            -# %th.mca_form_joins_heading
+            %th.mca_form_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :album_pictures, album.album_pictures_sorted do |ap|
+            %tr.mca_form_joins_values
+              %td.mca_form_joins_picture_image
+                = render 'admin/form_fields/joins_picture_thumbnail', form: ap
+              %td.mca_form_joins_picture_attributes
+                = render 'admin/form_fields/joins_picture_title', form: ap
+                = render 'admin/form_fields/joins_picture_coverpicture', form: ap
+                = render 'admin/form_fields/joins_picture_order', form: ap, resource_order: :album_order
+              %td.mca_form_joins_picture_remove= render 'admin/form_fields/destroy_box', form: ap
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will also detatch any pictures with the #{icon_remove} box checked"

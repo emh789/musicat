@@ -1,0 +1,103 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mc_events_index
+  display: flex
+  flex-direction: column
+
+.mc_events_index_by_year
+  font-weight: bold
+  font-family: font.$family-marquee
+  font-size: 1.125em
+  font-style: italic
+  border-width: border.$width
+
+.mc_events_index_events
+  display: flex
+  flex-direction: column
+  gap: margin.$one
+  margin: 0 margin.$one
+
+.mc_events_index_event
+  display: grid
+  grid-template-areas: 'datetime' 'title' 'location' 'alert'
+
+.mc_events_index_event_coverpicture
+  padding: margin.$one margin.$one
+
+.mc_events_index_event_info
+
+.mc_events_index_event_info_alert
+  font-family: font.$family-description
+  grid-area: alert
+
+.mc_events_index_event_info_datetime
+  font-family: font.$family-title
+  font-weight: bold
+  grid-area: datetime
+
+.mc_events_index_event_info_link
+  font-family: font.$family-description
+
+.mc_events_index_event_info_location
+  font-family: font.$family-description
+  grid-area: location
+
+.mc_events_index_event_info_title
+  font-family: font.$family-title
+  font-weight: bold
+  grid-area: title
+
+.mc_events_index_heading
+  text-align: center
+  font-family: font.$family-title
+  font-weight: bold
+  margin: margin.$one
+
+.mc_events_index_none
+  font-family: font.$family-title
+  margin: 0 margin.$one
+
+.mc_events_index_select
+  @include button.select_aux
+  font-weight: bold
+  margin-bottom: margin.$one
+
+.mc_events_index_table
+  margin: margin.$one
+
+.mc_events_index_thumbnail
+  border-radius: border.$radius-narrow
+
+
+@media #{screen.$px-480}
+  .mc_events_index
+    margin: margin.$one 0
+
+  .mc_events_index_events
+    font-size: 0.875em
+
+  .mc_events_index_thumbnail
+    max-height: 5em
+    max-width: 5em
+
+
+@media #{screen.$px481-767}
+  .mc_events_index
+    width: 25rem
+
+  .mc_events_index_thumbnail
+    max-height: 7em
+    max-width: 7em
+
+
+@media #{screen.$px768-}
+  .mc_events_index
+    width: 30rem
+
+  .mc_events_index_thumbnail
+    max-height: 7em
+    max-width: 7em

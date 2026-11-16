@@ -1,0 +1,13 @@
+.mca_resource_pane_title
+  Add audio by keyword
+
+- if selectable.does_have_keywords
+  = form_with model: [:admin, event], url: admin_event_add_audio_by_keyword_path(event, pane: :audio), local: true, class: :mca_form do |f|
+    .mca_form_data
+      = render 'admin/form_fields/add_by_keyword', form: f, selectable: selectable.keywords, text_method: :title_with_audio_count
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No keywords.

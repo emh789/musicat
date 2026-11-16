@@ -1,0 +1,27 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_isrc_index
+  align-items: center
+  display: flex
+  flex-direction: column
+  padding: margin.$one
+
+.mca_isrc_index_isrcs
+  margin: margin.$one
+  font-family: font.$family-data
+
+.mca_isrc_index_isrcs_item_class
+  padding: margin.$quarter
+
+.mca_isrc_index_isrcs_item_title
+  padding: margin.$quarter
+
+.mca_isrc_index_isrcs_item_isrc
+  padding: margin.$quarter
+
+.mca_isrc_index_filter_select
+  @include button.select_aux

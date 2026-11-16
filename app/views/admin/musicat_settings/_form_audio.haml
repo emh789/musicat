@@ -1,0 +1,9 @@
+= form_with model: [:admin, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :audio), local: true, class: :mca_form, method: :patch do |f|
+  .mca_resource_pane_title
+    Audio settings
+  .mca_form_attributes
+    = render 'field_audio_default_date_released', form: f
+    = render 'admin/form_fields/text_field_sized', attribute: :audio_default_isrc_country_code, form: f, size: 8
+    = render 'admin/form_fields/text_field_sized', attribute: :audio_default_isrc_registrant_code, form: f, size: 8
+  .mca_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

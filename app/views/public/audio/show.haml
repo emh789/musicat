@@ -1,0 +1,6 @@
+= content_for :page_subtitle, 'audio'
+= content_for :page_subtitle_detail, @audio.title_and_subtitle_for_display
+
+.mc_audio_show
+  .mc_audio_show_media
+    = render 'public/jplayer_single/jplayer_audio', audio: @audio

@@ -1,0 +1,9 @@
+.mca_infopage_show_item
+  .mca_infopage_show_item_order
+    = "#{order}."
+  .mca_infopage_show_item_class
+    Article
+  .mca_infopage_show_item_title
+    = article_admin_link_title(article)
+  .mca_infopage_show_item_content
+    = parser_div(article.content_props)

@@ -1,0 +1,23 @@
+.mca_resource_pane_title
+  Audio ID3
+
+= form_with(model: [:admin, audio], url: admin_audio_refresh_id3_path(audio, pane: :id3), local: true, class: :mca_form) do |f|
+  %ul.mca_form_explanation
+    %li Press "Update Auto" to replace the metadata in the database using those from the audio recording file.
+
+  .mca_form_explanation_warning This cannot be undone.
+
+  .mca_form_attributes
+    .mca_form_title Currently in database
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @audio.title
+    = render 'admin/shared/metadata_pair', key: 'Audio artist', value: @audio.audio_artist
+    = render 'admin/shared/metadata_pair', key: 'Date released', value: @audio.date_released
+    = render 'admin/shared/metadata_pair', key: 'Duration', value: @audio.duration
+
+  .mca_form_attributes
+    .mca_form_title Stored from audio recording file
+    - audio_read_source_metadata(audio).each_pair do |key, value|
+      = render 'admin/shared/metadata_pair', key: key, value: value
+
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

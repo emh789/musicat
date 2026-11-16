@@ -1,0 +1,69 @@
+class MarkupParser
+
+  extend InactiveRecordSingleton
+
+  DATA = [
+    {
+      id: 'inline',
+      categories: [:admin, :public],
+      description: 'Inline text',
+      method_parse: lambda { |text| text.to_s },
+      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
+    },
+    {
+      id: 'markdown',
+      categories: [:admin, :public],
+      description: 'Markdown',
+      method_parse: lambda { |text| Commonmarker.to_html(text.to_s) },
+      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
+    },
+    {
+      id: 'plaintext',
+      categories: [:admin, :public],
+      description: 'Plain text',
+      method_parse: lambda { |text| ApplicationController.helpers.simple_format(text.to_s) },
+      method_sanitize: lambda { |text| ApplicationController.helpers.sanitize(text) },
+    }
+  ]
+
+
+  protected
+
+  def self.parse_sanitize(resource_text_props)
+    parser = MarkupParser.find(resource_text_props[:markup_type])
+    if parser == false
+      parser = MarkupParser.find('plaintext')
+    end
+    parser.parse_and_sanitize(resource_text_props[:markup_text])
+  end
+
+
+  public
+
+  attr_reader :id, :description, :html_class, :method_parse, :method_sanitize
+
+  def initialize(parser)
+    if parser
+      @id = parser[:id]
+      @description = parser[:description]
+      # @html_class = [MarkupParser.html_class_prefix, parser[:id]].join('_')
+      @method_parse = parser[:method_parse]
+      @method_sanitize = parser[:method_sanitize]
+    end
+  end
+
+
+  def parse(text)
+    @method_parse.call(text)
+  end
+
+  def parse_and_sanitize(text)
+    sanitize(parse(text))
+  end
+
+  def sanitize(text)
+    @method_sanitize.call(text)
+  end
+
+
+end

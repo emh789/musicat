@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add audio
+
+- if selectable.does_have_audio
+  = form_with model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :audio), local: true, class: :mca_form do |f|
+    .mca_form_data
+      = f.fields_for :audio_keywords, keyword.audio_keywords.build do |ak|
+        = render 'admin/form_fields/collection_select', form: ak, attribute: :audio_id, blank: true, collection: selectable.audio, label: 'Audio title', text_method: :title_for_display
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No audio.

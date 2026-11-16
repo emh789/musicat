@@ -1,0 +1,33 @@
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_administrators_index
+  max-width: 18rem
+  margin: 1rem
+
+.mca_administrators_index_administrator
+
+.mca_administrators_index_administrator_value
+  padding: margin.$half
+  text-align: left
+
+.mca_administrators_index_administrator_value_authority
+  font-family: font.$family-data
+  font-size: 0.8rem
+  font-style: italic
+
+.mca_administrators_index_administrator_value_email
+  font-family: font.$family-data
+  font-size: 0.8rem
+
+.mca_administrators_index_administrator_value_name
+  font-family: font.$family-data
+  font-size: 1rem
+  font-weight: bold
+
+
+@media #{screen.$px-480}
+  .mca_administrators_index_administrator_value
+    word-break: break-word
+    word-wrap: break-word

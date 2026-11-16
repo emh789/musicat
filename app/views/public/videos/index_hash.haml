@@ -1,0 +1,15 @@
+= content_for :page_subtitle, 'videos'
+
+.mc_videos_index
+  - @video_groups.each_pair do |keyword, videos|
+    .mc_videos_index_category
+      .mc_videos_index_category_heading.color_bg_heading
+        = keyword
+      .mc_videos_index_category_videos
+        - videos.each do |video|
+          .mc_videos_index_video.mc_active_link_container{data: {url: public_video_path(video.id_public)}}
+            .mc_videos_index_video_picture
+              = render 'index_video_picture_img', video: video
+            .mc_videos_index_video_text
+              = render 'index_video_text_title', video: video
+              = render 'index_video_text_year', video: video

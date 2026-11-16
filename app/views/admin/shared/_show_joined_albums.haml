@@ -1,0 +1,11 @@
+%table.mca_show_joined_albums
+  %caption.mca_show_joined_albums_count
+    = resource_joined_albums_count_label(resource)
+  - if resource.does_have_albums
+    %tbody
+      - resource.joined_albums_sorted.each do |joined_album|
+        %tr
+          %td.mca_show_joined_album_title
+            = album_admin_link_title(joined_album.album)
+          %td.mca_show_joined_album_visibility
+            = visibility_abbreviation(joined_album.album.visibility)

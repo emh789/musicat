@@ -1,0 +1,7 @@
+- unless (local_assigns[:optional] == true) && (value.to_s == '')
+  .mca_metadata_pair
+    %dt.mca_metadata_key= key
+    - if boolean.to_s != ''
+      %dd.mca_metadata_value= boolean
+    - else
+      %dd.mca_metadata_value= 'false'

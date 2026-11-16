@@ -1,0 +1,13 @@
+= content_for :page_subtitle, 'help'
+= content_for :page_subtitle_detail, 'markup types'
+
+.mca_resource_header
+  .mca_resource_header_category
+    A&amp;R.local markup types
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = welcome_markup_admin_nav_button(category: category, current_pane: @form_metadata.current_pane)
+
+.mca_help_markup
+  = render @form_metadata.partial_name, markup_examples: @form_metadata.markup_examples, parser: @form_metadata.parser

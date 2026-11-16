@@ -1,0 +1,19 @@
+= content_for :page_subtitle, 'upload audio single'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    Upload Audio
+
+.mca_audio_new.mca_resource_pane
+  = form_with(model: [:admin, @audio], local: true, url: admin_audio_create_from_upload_path, class: :mca_form) do |f|
+    .mca_form_attributes
+      = render 'admin/form_fields/file_field', |
+          attribute: :source_uploaded, |
+          errors: @audio.errors.messages_for(:source_file), |
+          form: f, |
+          label: 'Source file'
+      = render 'admin/form_fields/auto_keyword', |
+          attribute: :audio_keywords, |
+          form: f
+    .mca_form_actions
+      = f.submit class: :mca_form_submit

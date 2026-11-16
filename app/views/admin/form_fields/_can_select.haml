@@ -1,0 +1,6 @@
+%fieldset.mca_form_attribute_can_select
+  = form.label "can_select_#{attribute}", class: :mca_form_label
+  = form.check_box "can_select_#{attribute}", class: :mca_form_input_checkbox_legacy
+  = form.label "can_select_#{attribute}", '&nbsp;'.html_safe, class: :mca_form_input_checkbox_visible, tabindex: 0
+  = form.label "order:", class: :mca_form_attribute_can_select_label
+  = form.text_field "order_selecting_#{attribute}", autocomplete: :off, class: :mca_form_input_text_field, size: 3

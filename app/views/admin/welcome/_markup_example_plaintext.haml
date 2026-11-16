@@ -1,0 +1,11 @@
+%h2.mca_help_markup_heading Plain Text
+%table.mca_help_markup_demo
+  %tr
+    %th.mca_help_markup_demo_heading.color_bg_heading text data
+    %th.mca_help_markup_demo_heading.color_bg_heading plain text result
+  - markup_examples.each do |markup_example|
+    %tr.mca_help_markup_demo_example
+      %td.mca_help_markup_demo_example_input
+        = simple_format(markup_example)
+      %td.mca_help_markup_demo_example_output
+        = parser.parse_and_sanitize(markup_example)

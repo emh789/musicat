@@ -1,0 +1,8 @@
+- if form_will_include_autokeyword(params[:action], form.object)
+  = form.fields_for attribute, form.object.autokeyword do |jk|
+    %fieldset.mca_form_attribute
+      = jk.label :keyword_id, sanitize("Auto-keyword as <i>#{jk.object.keyword.title}</i>", keywords: %w(i)), class: :mca_form_label
+      = jk.check_box :keyword_id, {class: :mca_form_input_checkbox_legacy, checked: true}, jk.object.keyword.id
+      = jk.label :keyword_id, '&nbsp;'.html_safe, class: :mca_form_input_checkbox_visible, tabindex: 0
+      %aside.mca_form_explanation
+        = sanitize("Value can be changed in the #{link_to 'MusiCat control panel', edit_admin_musicat_settings_path(pane: :admin), class: :arl_link_url}.")

@@ -1,0 +1,15 @@
+.mca_resource_pane_title
+  Article Details
+
+= form_with(model: [:admin, article], local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = render 'admin/form_fields/text_field',      attribute: :title,            form: f
+    = render 'admin/form_fields/visibility',      attribute: :visibility,       form: f
+    = render 'admin/form_fields/auto_keyword',    attribute: :article_keywords, form: f
+    = render 'admin/form_fields/spacer'
+    = render 'admin/form_fields/text_field',      attribute: :author,           form: f
+    = render 'admin/form_fields/parseable_area',  attribute: :content,          form: f, selectable: selectable
+    = render 'admin/form_fields/parseable_field', attribute: :copyright,        form: f, selectable: selectable
+    = render 'admin/form_fields/date_field',      attribute: :date_released,    form: f, default_date: Date.current
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

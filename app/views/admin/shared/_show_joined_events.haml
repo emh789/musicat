@@ -1,0 +1,11 @@
+%table.mca_show_joined_events
+  %caption.mca_show_joined_events_count
+    = resource_joined_events_count_label(resource)
+  - if resource.does_have_events
+    %tbody
+      - resource.joined_events_sorted.each do |joined_event|
+        %tr.mca_show_joined_event
+          %td.mca_show_joined_event_date_venue
+            = event_admin_link_date_and_venue(joined_event.event)
+          %td.mca_show_joined_event_visibility
+            = visibility_abbreviation(joined_event.event.visibility)

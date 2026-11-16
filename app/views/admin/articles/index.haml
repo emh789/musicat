@@ -1,0 +1,23 @@
+= content_for :page_subtitle, 'articles'
+
+.mca_resource_header.resource_index_private
+  .mca_resource_header_category
+    Articles Index
+
+.mca_articles_index
+  .mca_articles_index_articles
+    - @articles.each do |article|
+      .mca_articles_index_article
+        .mca_articles_index_article_title
+          = article_admin_link_title(article)
+        .mca_articles_index_article_author
+          = article.author
+        .mca_articles_index_article_summary
+          = parser_div(article.content_beginning_props)
+        .mca_articles_index_article_joins
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_infopages', resource: article
+        .mca_articles_index_article_copyright
+          = parser_div(article.copyright_props)
+        .mca_articles_index_article_visibility
+          = visibility_description(article.visibility)

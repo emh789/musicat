@@ -1,0 +1,11 @@
+.mca_resource_pane_title
+  Album Details
+  
+= form_with(model: [:admin, album], url: admin_album_path(album, pane: :vendors), local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = render 'admin/form_fields/check_box', form: f, attribute: :show_can_include_vendor_markdown_links
+    = render 'admin/form_fields/text_area', form: f, attribute: :vendor_markdown_links, aside: "Format: [text](url)"
+
+  .mca_form_actions
+    .mca_form_action_submit
+      = f.submit class: :mca_form_submit

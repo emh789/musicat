@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+%head
+  = html_head_title_admin
+  = html_head_meta_charset_tag
+  = html_head_meta_viewport_tags
+
+  -# = favicon_link_tag(app_favicon_filepath, rel: 'icon')
+  -# = favicon_link_tag(app_favicon_filepath, rel: 'apple-touch-icon')
+  = yield(:html_head_meta_description)
+
+  = javascript_include_tag('slimselect')
+  = stylesheet_link_tag('slim_select')
+
+  = javascript_include_tag('application', 'admin', 'amplitude', 'direct_uploads')
+  = stylesheet_link_tag('application', 'public', 'admin', 'yowl')
+  = csrf_meta_tags
+
+
+%body
+  .musicat_admin
+    = render 'layouts/header_admin'
+    = render 'layouts/content_admin'
+    = render 'layouts/footer'
+
+  %script
+    Musicat.FrontEnd._onReady.initialize();
+    Musicat.Admin.FrontEnd._onReady.initialize();
+
+</html>

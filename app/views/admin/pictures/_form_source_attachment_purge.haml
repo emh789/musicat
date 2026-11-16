@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  = @picture.source_uploaded.filename
+.mca_resource_pane_title
+  Remove attachment?
+
+%ul.mca_form_explanation
+  %li Attachment will be removed from picture entry.
+  %li Picture entry will remain in the database.
+
+.mc_form_warning This action can not be undone.
+
+= form_with(model: [:admin, @picture], url: admin_picture_purge_source_uploaded_path(@picture, pane: :source), local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Purge Attachment', class: :mca_form_destroy, data: { confirm: 'Are you sure?' }

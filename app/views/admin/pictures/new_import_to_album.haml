@@ -1,0 +1,29 @@
+= content_for :page_subtitle, 'import picture to album'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    Picture Import to Album
+
+.mca_pictures_new.mca_resource_pane
+  = form_with(model: [:admin, @picture], local: true, url: admin_picture_create_from_import_to_album_path, class: :mca_form) do |f|
+    .mca_form_attributes
+      = render 'admin/form_fields/text_field', |
+          aside: "#{source_imported_dirname(trailing_separator: true)}", |
+          attribute: :source_imported_file_path, |
+          errors: @picture.errors.messages_for(:source_file), |
+          form: f, |
+          label: 'Source file'
+      = render 'admin/form_fields/auto_keyword', |
+          attribute: :picture_keywords, |
+          form: f
+      = f.fields_for :album_pictures, f.object.album_pictures.build do |ap|
+        = render 'admin/form_fields/collection_select', |
+            attribute: :album_id, |
+            blank: true, |
+            collection: @albums, |
+            errors: @picture.errors.messages_for(:album), |
+            form: ap, |
+            label: 'Album', |
+            text_method: :title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit

@@ -1,0 +1,30 @@
+.mca_resource_joins_buttons
+  = video_picture_admin_button_to_new_join_single(video)
+  = video_picture_admin_button_to_new_import(video)
+  = video_picture_admin_button_to_new_upload(video)
+
+.mca_resource_pane_title
+  = resource_joined_pictures_count_statement(video)
+
+- if video.does_have_pictures
+  = form_with(model: [:admin, video], url: admin_video_path(video, pane: :pictures), local: true, class: :mca_form, method: :patch) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading{colspan: 2} picture
+          -# %th.mca_form_joins_heading
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :video_pictures do |vp|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_picture_image
+              = render 'admin/form_fields/joins_picture_thumbnail', form: vp
+            %td.mca_form_joins_picture_attributes
+              = render 'admin/form_fields/joins_picture_title', form: vp
+              = render 'admin/form_fields/joins_picture_coverpicture', form: vp
+              = render 'admin/form_fields/joins_picture_order', form: vp, resource_order: :video_order
+            %td.mca_form_joins_picture_remove= render 'admin/form_fields/destroy_box', form: vp
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will also detatch any pictures with the #{icon_remove} box checked"

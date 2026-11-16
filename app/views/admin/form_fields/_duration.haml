@@ -1,0 +1,18 @@
+%fieldset.mca_form_attribute
+  %label.mca_form_label Duration
+  .mca_form_multi
+    .mca_form_multi_field
+      = form.label :duration_hrs, 'hrs', class: :mca_form_multi_label
+      = form.text_field :duration_hrs, autocomplete: :off, size: 3, class: :mca_form_input_text_field
+    .mca_form_multi_spacer= ':'
+    .mca_form_multi_field
+      = form.label :duration_mins, 'mins', class: :mca_form_multi_label
+      = form.text_field :duration_mins, autocomplete: :off, size: 3, maxlength: 2, class: :mca_form_input_text_field
+    .mca_form_multi_spacer= ':'
+    .mca_form_multi_field
+      = form.label :duration_secs, 'secs', class: :mca_form_multi_label
+      = form.text_field :duration_secs, value: form.object.duration_secs_padded, autocomplete: :off, size: 3, maxlength: 2, class: :mca_form_input_text_field
+    .mca_form_multi_spacer= '.'
+    .mca_form_multi_field
+      = form.label :duration_mils, 'mils', class: :mca_form_multi_label
+      = form.text_field :duration_mils, value: form.object.duration_mils_padded, autocomplete: :off, size: 3, maxlength: 3, class: :mca_form_input_text_field

@@ -1,0 +1,13 @@
+= form_with(model: [:admin, stream], local: true, class: :mca_form) do |f|
+  .mc_form_stream
+    .mca_resource_pane_title
+      Stream details
+    .mc_form_data
+      = render 'admin/form_fields/text_field',      attribute: :title,        form: f
+      = render 'admin/form_fields/visibility',      attribute: :visibility,   form: f
+      = render 'admin/form_fields/spacer'
+      = render 'admin/form_fields/parseable_area',  attribute: :description,  form: f, selectable: selectable
+      = render 'admin/form_fields/text_area',       attribute: :html_element, form: f
+    .mc_form_actions
+      .mc_form_action_submit
+        = f.submit class: :mca_form_submit

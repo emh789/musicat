@@ -1,0 +1,56 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+// @use '../spec/media_screen' as screen
+
+.mca_form_joins
+  margin-left: auto
+  margin-right: auto
+  margin-top: margin.$one
+  margin-bottom: margin.$one
+
+.mca_form_joins_remove
+  font-family: font.$family-application
+  padding: margin.$quarter
+  max-width: 3rem
+  vertical-align: top
+
+.mca_form_joins_destroy_checkbox_legacy
+  display: none
+
+.mca_form_joins_destroy_checkbox_visible
+  border-width: border.$width
+  display: inline-block
+  height: 1.5rem
+  width: 1.5rem
+
+.mca_form_joins_heading
+  border-bottom-width: border.$width
+  font-family: font.$family-application
+  font-weight: bold
+  padding: margin.$quarter margin.$half
+  text-align: left
+  &:first-child
+    padding: 0 margin.$one
+
+.mca_form_joins_heading:last-child
+  border-bottom-width: border.$width
+  font-family: font.$family-application
+  font-weight: bold
+  padding: margin.$quarter margin.$one
+  text-align: right
+  max-width: 3rem
+
+.mca_form_joins_value_title
+  font-family: font.$family-data
+  padding: margin.$quarter
+  text-align: left
+  &:first-child
+    padding: 0 margin.$one
+
+.mca_form_joins_value
+  font-family: font.$family-data
+  padding: margin.$quarter
+  text-align: left
+  &:first-child
+    padding: 0 margin.$one

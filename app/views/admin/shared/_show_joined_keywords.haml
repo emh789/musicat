@@ -1,0 +1,9 @@
+%table.mca_show_joined_keywords
+  %caption.mca_show_joined_keywords_count
+    = resource_joined_keywords_count_label(resource)
+  - if resource.does_have_keywords
+    %tbody
+      - resource.joined_keywords_sorted.each do |joined_keyword|
+        %tr.mca_show_joined_keyword
+          %td.mca_show_joined_keyword_title
+            = keyword_admin_link_title(joined_keyword.keyword)

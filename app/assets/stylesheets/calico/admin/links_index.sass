@@ -1,0 +1,35 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_links_index
+  margin: margin.$one
+  max-width: 40rem
+
+.mca_links_index_link
+  display: grid
+  grid-template-areas: 'name' 'address' 'resources' 'visibility'
+  row-gap: margin.$quarter
+  margin: margin.$one 0rem
+
+.mca_links_index_link_address
+  grid-area: address
+  font-family: font.$family-data
+
+.mca_links_index_link_resources
+  grid-area: resources
+  font-family: font.$family-data
+  font-size: 0.9rem
+
+.mca_links_index_link_name
+  grid-area: name
+  font-family: font.$family-title
+  font-weight: bold
+
+.mca_links_index_link_visibility
+  grid-area: visibility
+  font-family: font.$family-data
+  font-size: 0.9rem
+  font-weight: bold

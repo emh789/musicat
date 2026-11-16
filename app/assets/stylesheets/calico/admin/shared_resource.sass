@@ -1,0 +1,197 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+
+.mca_resource_errors
+  margin: margin.$half margin.$one
+
+.mca_resource_errors_count
+  font-family: font.$family-application
+
+.mca_resource_errors_message
+  list-style-type: disc
+  font-family: font.$family-application
+
+
+.mca_resource_header
+  display: grid
+  justify-content: center
+  border-bottom-width: border.$width
+  width: 100%
+  padding: margin.$half
+  &.resource_edit
+    align-items: center
+    gap: margin.$half
+    grid-template-areas: 'category' 'title' 'buttons'
+    text-align: center
+  &.resource_edit_private
+    align-items: center
+    grid-template-areas: 'category'
+    text-align: center
+  &.resource_edit_with_thumbnail
+    align-items: start
+    column-gap: margin.$one
+    grid-template-areas: 'thumbnail category' 'thumbnail title' 'thumbnail buttons'
+    grid-template-columns: min-content auto
+    row-gap: font.$line-height
+    padding: margin.$one 0
+  &.resource_index
+    align-items: center
+    gap: margin.$half
+    grid-template-areas: 'category' 'buttons'
+    text-align: center
+  &.resource_index_private
+    align-items: center
+    grid-template-areas: 'category'
+    text-align: center
+  &.resource_new
+    align-items: center
+    grid-template-areas: 'category'
+    text-align: center
+  &.resource_show
+    align-items: center
+    gap: margin.$half
+    grid-template-areas: 'category' 'title' 'buttons'
+    text-align: center
+
+.mca_resource_header_buttons
+  cursor: default
+  grid-area: buttons
+  user-select: none
+
+.mca_resource_header_category
+  font-family: font.$family-application
+  font-size: 1.25em
+  font-weight: bold
+  grid-area: category
+
+.mca_resource_header_thumbnail
+  grid-area: thumbnail
+
+.mca_resource_header_thumbnail_image
+  border-radius: border.$radius-narrow
+  max-height: 8rem
+  max-width: 8rem
+
+.mca_resource_header_title
+  font-family: font.$family-application
+  font-size: 1.25em
+  font-style: italic
+  font-weight: bold
+  grid-area: title
+
+.mca_resource_edit_nav
+
+.mca_resource_edit_nav_item
+  font-family: font.$family-application
+
+.mca_resource_edit_nav_item_current
+  font-family: font.$family-application
+  font-weight: bold
+
+.mca_resource_edit_nav_item_link
+  display: block
+  font-family: font.$family-application
+  font-size: 0.9em
+  padding: margin.$quarter margin.$half
+
+.mca_resource_joined
+  margin: margin.$one 0rem
+
+.mca_resource_joined_heading
+  font-family: font.$family-data
+  font-weight: bold
+
+.mca_resource_joined_others
+  font-family: font.$family-data
+
+.mca_resource_joins_buttons
+  align-items: center
+  display: flex
+  flex-direction: row
+  justify-content: center
+  margin-bottom: margin.$one
+  margin-left: auto
+  margin-right: auto
+  max-width: 16rem
+  user-select: none
+
+.mca_resource_joins_button
+  border-radius: border.$radius
+  border-width: border.$width-wide
+  display: inline-block
+  height: 1.5em
+  margin-right: 0.5rem
+  min-width: 1.5em
+  padding: margin.$eighth margin.$half
+  &:last-child
+    margin-right: 0rem
+
+.mca_resource_pane
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  margin: margin.$sesqui 0
+
+.mca_resource_pane_title
+  justify-self: center
+  font-family: font.$family-application
+  font-size: 1.25em
+  font-weight: bold
+  text-align: center
+
+
+@media #{screen.$px-480}
+  .mca_resource_edit_nav
+    display: flex
+    flex-direction: column
+    width: 100%
+
+  .mca_resource_edit_nav_item
+    border-bottom-width: border.$width
+    margin-bottom: border.$width
+    // ^ margin-bottom ensures visible outline for active nav_item_links
+    text-align: center
+
+  .mca_resource_edit_nav_item_current
+    border-bottom-width: border.$width
+    text-align: center
+
+
+@media #{screen.$px481-767}
+  .mca_resource_edit_nav
+    border-collapse: collapse
+    display: table
+
+  .mca_resource_edit_nav_item
+    border-bottom-width: border.$width
+    border-left-width: border.$width
+    border-right-width: border.$width
+    display: table-cell
+
+  .mca_resource_edit_nav_item_current
+    border-bottom-width: border.$width
+    border-left-width: border.$width
+    border-right-width: border.$width
+    display: table-cell
+
+
+@media #{screen.$px768-}
+  .mca_resource_edit_nav
+    border-collapse: collapse
+    display: table
+
+  .mca_resource_edit_nav_item
+    border-bottom-width: border.$width
+    border-left-width: border.$width
+    border-right-width: border.$width
+    display: table-cell
+
+  .mca_resource_edit_nav_item_current
+    border-bottom-width: border.$width
+    border-left-width: border.$width
+    border-right-width: border.$width
+    display: table-cell

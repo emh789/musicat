@@ -1,0 +1,26 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_infopages_index_infopage
+  column-gap: margin.$half
+  display: grid
+  grid-template-areas: 'order title' 'order resources'
+  margin: margin.$one
+  row-gap: margin.$quarter
+
+.mca_infopages_index_infopage_order
+  grid-area: order
+  font-family: font.$family-data
+
+.mca_infopages_index_infopage_title
+  grid-area: title
+  font-family: font.$family-title
+  font-weight: bold
+
+.mca_infopages_index_infopage_resources
+  grid-area: resources
+  font-family: font.$family-data
+  font-size: 0.9em

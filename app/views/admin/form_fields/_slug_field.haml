@@ -1,0 +1,8 @@
+- if local_assigns[:musicat_settings].admin_forms_edit_slug_field == true
+  %fieldset.mca_form_attribute
+    = form.label attribute, class: :mca_form_label
+    %aside.mca_form_explanation
+      = resource_slug_form_explanation(form.object)
+    %aside.mca_form_explanation
+      May contain: <code>[a-z] [A-Z] [0-9] _ -</code>
+    = form.text_field attribute, autocomplete: :off, size: 30, class: :mca_form_input_text_field

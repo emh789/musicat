@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Destroy video?
+  .mca_form_label_destroy= tag.i video.title
+
+%ul.mca_form_destroy_explanation
+  %li Attached source will be destroyed.
+  %li Thumbnail picture will remain in database.
+  %li Catalog source files will remain in the filesystem.
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, video], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Video', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

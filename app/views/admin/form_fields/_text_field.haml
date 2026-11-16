@@ -1,0 +1,10 @@
+%fieldset.mca_form_attribute
+  = form.label (local_assigns[:label] ? label : attribute), class: :mca_form_label
+  - if local_assigns[:errors] && local_assigns[:errors].any?
+    %mark.mca_form_errors
+      - errors.each do |e|
+        .mca_form_error= e
+  - if local_assigns[:aside]
+    - [aside].flatten.each do |a|
+      %aside.mca_form_explanation= "#{a}"
+  = form.text_field attribute, autocomplete: :off, class: :mca_form_input_text_field, tabindex: 0

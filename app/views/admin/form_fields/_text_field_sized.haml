@@ -1,0 +1,5 @@
+%fieldset.mca_form_attribute
+  = form.label attribute, ( local_assigns[:label] ? label : nil ), class: :mca_form_label
+  = form.text_field attribute, autocomplete: :off, size: size, class: :mca_form_input_text_sized
+  - if local_assigns[:aside]
+    %aside.mca_form_explanation= "#{aside}"

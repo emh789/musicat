@@ -1,0 +1,134 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+
+.mc_video_embed iframe
+  aspect-ratio: 16 / 9
+  size: 100%
+  height: 100%
+
+.mc_videos_show
+
+.mc_videos_show_nav_neighbors
+  text-align: center
+  width: 100%
+
+.mc_videos_show_text
+  font-family: font.$family-description
+  font-weight: normal
+
+.mc_videos_show_text_video_artist
+  font-family: font.$family-title
+
+.mc_videos_show_text_copyright
+  font-size: 0.8em
+
+.mc_videos_show_text_description
+  font-size: 1em
+  margin-bottom: font.$line-height
+  margin-top: font.$line-height
+
+.mc_videos_show_text_duration
+  font-size: 0.8em
+
+.mc_videos_show_text_date_released
+  font-size: 0.8em
+  margin-bottom: font.$line-height
+
+.mc_videos_show_text_personnel
+  font-size: 1em
+
+.mc_videos_show_text_title
+  font-family: font.$family-title
+  font-size: 1.25em
+  font-weight: bold
+
+
+
+@media #{screen.$px-480}
+  .mc_videos_show
+    display: flex
+    flex-direction: column
+    align-items: stretch
+    justify-content: center
+
+  .mc_videos_show_nav_neighbors
+    margin-bottom: margin.$one
+    margin-top: margin.$half
+
+  .mc_videos_show_text
+    align-items: stretch
+    display: flex
+    flex-direction: column
+    justify-content: center
+    font-size: 0.9rem
+    padding: margin.$one
+
+  .mc_video_embed
+    width: 320px
+    height: 180px
+
+  .mc_video_player
+    width: 320px
+
+
+
+@media #{screen.$px481-767}
+  .mc_videos_show
+    align-items: center
+    display: flex
+    flex-direction: column
+    gap: margin.$one
+    justify-content: flex-start
+    width: 25rem
+
+  .mc_videos_show_nav_neighbors
+
+  .mc_videos_show_player
+
+  .mc_videos_show_text
+    align-items: stretch
+    display: flex
+    flex-direction: column
+    justify-content: center
+    text-align: left
+    width: 24rem
+
+  .mc_video_embed
+    @include border.shadowed
+    width: 400px
+    height: 225px
+
+  .mc_video_player
+    width: 400px
+
+
+@media #{screen.$px768-}
+  .mc_videos_show
+    align-items: center
+    display: flex
+    flex-direction: column
+    gap: margin.$one
+    justify-content: stretch
+    width: min-content
+
+  .mc_videos_show_nav_neighbors
+
+  .mc_videos_show_player
+
+  .mc_videos_show_text
+    align-content: start
+    display: flex
+    flex-direction: column
+    justify-content: start
+    width: 100%
+
+  .mc_video_embed
+    @include border.shadowed
+    width: 640px
+    height: 360px
+
+  .mc_video_player
+    width: 640px

@@ -1,0 +1,16 @@
+.mca_resource_pane_title
+  Destroy album?
+  .mca_form_data_label_destroy= tag.i album.title
+
+%ul.mca_form_destroy_explanation
+  %li Tracklist will be erased.
+  %li Album data will be erased.
+  %li Audio entries will remain in the database.
+  %li Audio files will remain in the filesystem.
+
+.mca_form_warning
+  This action can not be undone.
+
+= form_with(model: [:admin, album], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Album', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

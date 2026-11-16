@@ -1,0 +1,41 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.mc_header
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  padding: margin.$half
+  border-bottom-width: border.$width
+
+.mc_header_artist
+  margin-top: margin.$quarter
+  margin-bottom: margin.$quarter
+
+.mc_header_artist_name
+  border-radius: border.$radius
+  font-family: font.$family-artist
+  font-size: 2.5rem
+  font-weight: 400
+  line-height: 2.5rem
+  padding: 0 margin.$eighth
+  text-decoration: none
+
+#mc_header_nav
+  border-radius: border.$radius
+  border-width: border.$width
+  display: flex
+  margin-top: margin.$eighth
+  margin-bottom: margin.$half
+
+#mc_header_nav_select
+  font-family: font.$family-title
+  font-weight: bold
+  font-size: 1rem
+  vertical-align: top
+  border-radius: border.$radius
+  border-right-width: margin.$half
+  display: flex
+  padding: margin.$quarter margin.$half

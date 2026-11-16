@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add video to keyword
+
+- if selectable.does_have_keywords
+  = form_with model: [:admin, video], url: admin_video_path(video, pane: :keywords), local: true, class: :mca_form do |f|
+    .mca_form_data
+      = f.fields_for :video_keywords, video.video_keywords.build do |vk|
+        = render 'admin/form_fields/collection_select', form: vk, attribute: :keyword_id, blank: true, collection: selectable.keywords, label: 'Keyword', text_method: :title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No keywords.

@@ -1,0 +1,5 @@
+%fieldset.mca_form_attribute
+  %h3 OBSOLETE
+  = form.label attribute, class: :mca_form_label
+  .mca_form_attribute_multi
+    = form.date_select attribute, { include_blank: true, selected: form.object.date_released || default_date }, { class: :mca_form_input_select_multi }

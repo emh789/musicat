@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new video'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Video
+  = render '/admin/form_fields/errors', resource: @video
+
+.mca_video_new.mca_resource_pane
+  = render 'form', video: @video, selectable: @form_metadata.selectables

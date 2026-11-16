@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add a picture
+
+- if selectable.does_have_pictures
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :pictures), local: true, class: :mca_form) do |f|
+    .mca_form_data
+      = f.fields_for :picture_keywords, keyword.picture_keywords.build do |pk|
+        = render 'admin/form_fields/picture_select', form: pk, selectable: selectable
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No pictures.

@@ -1,0 +1,16 @@
+= content_for :page_subtitle, 'streams'
+
+.mc_admin_resource_header.resource_index_private
+  .mc_admin_resource_header_category
+    Streams Index
+
+.mc_admin_streams_index
+  .mc_admin_streams_index
+    - @streams.each do |stream|
+      .mc_admin_streams_index_stream
+        .mc_admin_streams_index_stream_title
+          = stream_admin_link_title(stream)
+        .mc_admin_streams_index_stream_html_element
+          = stream.html_element
+        .mc_admin_streams_index_stream_visibility
+          = visibility_description(stream.visibility)

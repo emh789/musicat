@@ -1,0 +1,36 @@
+= content_for :page_subtitle, 'pictures'
+
+.mca_resource_header.resource_index
+  .mca_resource_header_category
+    Pictures Index
+  .mca_resource_header_buttons
+    = picture_admin_button_to_public
+
+.mca_pictures_index_filter
+  .mca_pictures_index
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = picture_admin_filter_select f, params, class: [:mc_active_filter, :mca_pictures_index_filter_select]
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  .mca_pictures_index_pictures
+    - @pictures.each do |picture|
+      .mca_pictures_index_picture
+        .mca_pictures_index_picture_image
+          = picture_preferred_tag(picture, html_class: :mca_pictures_index_picture_image_thumbnail)
+        .mca_pictures_index_picture_title
+          = picture_admin_link_title(picture)
+        .mca_pictures_index_picture_filepath
+          = picture_admin_filepath_with_indicators(picture)
+        .mca_pictures_index_picture_resources
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_albums', resource: picture
+            = render 'admin/shared/index_joined_events', resource: picture
+            = render 'admin/shared/index_joined_keywords', resource: picture
+            = render 'admin/shared/index_joined_videos', resource: picture
+        .mca_pictures_index_picture_datetime
+          = picture.datetime
+        .mca_pictures_index_picture_visibility
+          = visibility_description(picture.visibility)
+
+  - if @page_nav_data
+    = render 'shared/nav_page', controller: 'pictures', page: @page_nav_data

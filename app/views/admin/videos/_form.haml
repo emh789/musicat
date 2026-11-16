@@ -1,0 +1,16 @@
+.mca_resource_pane_title
+  video details
+
+= form_with(model: [:admin, video], local: true, class: :mca_form) do |f|
+  .mca_form_data
+    = render 'admin/form_fields/text_field',      attribute: :title,            form: f
+    = render 'admin/form_fields/visibility',      attribute: :visibility,       form: f
+    = render 'admin/form_fields/auto_keyword',   attribute: :video_keywords,   form: f
+    = render 'admin/form_fields/spacer'
+    = render 'admin/form_fields/parseable_field', attribute: :copyright,        form: f, selectable: selectable
+    = render 'admin/form_fields/date_field',      attribute: :date_released,    form: f, default_date: Date.current
+    = render 'admin/form_fields/parseable_area',  attribute: :description,      form: f, selectable: selectable
+    = render 'admin/form_fields/isrc',            attribute: :isrc,             form: f
+    = render 'admin/form_fields/parseable_area',  attribute: :personnel,        form: f, selectable: selectable
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

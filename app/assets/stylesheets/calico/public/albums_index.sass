@@ -1,0 +1,137 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mc_albums_index
+.mc_albums_index_album
+  cursor: pointer
+
+.mc_albums_index_album_notice_alt_url
+  font-family: font.$family-title
+  font-size: 0.9em
+  font-style: italic
+
+.mc_albums_index_album_notice_alt_url_link
+
+.mc_albums_index_album_picture
+
+.mc_albums_index_album_picture_img
+  @include border.shadowed
+  border-radius: border.$radius-narrow
+
+.mc_albums_index_album_text
+
+.mc_albums_index_album_text_album_artist
+  font-family: font.$family-title
+  font-size: 0.9em
+  font-style: italic
+  font-weight: bold
+  margin-bottom: margin.$eighth
+
+.mc_albums_index_album_text_title
+  font-family: font.$family-title
+  font-weight: bold
+  margin-bottom: margin.$quarter
+
+.mc_albums_index_album_text_title_link
+
+.mc_albums_index_album_text_track
+  display: inline
+  margin: 0rem
+  &:after
+    content: ' / '
+
+  &:last-child:after
+    content: ''
+
+
+.mc_albums_index_album_text_tracks
+  font-family: font.$family-description
+  font-size: 0.75rem
+  list-style-type: none
+  margin: margin.$quarter 0rem
+
+.mc_albums_index_album_text_year
+  font-family: font.$family-description
+  font-size: 0.75rem
+  margin-top: margin.$quarter
+
+.mc_albums_index_albums
+
+
+
+@media #{screen.$px-480}
+  .mc_albums_index
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    padding: margin.$half 0
+
+  .mc_albums_index_album_picture
+    padding: margin.$third margin.$eighth
+
+  .mc_albums_index_album_picture_img
+    height: 5rem
+    width: 5rem
+
+  .mc_albums_index_album_text
+    padding: margin.$third margin.$eighth
+
+  .mc_albums_index_album_text_album_artist
+    font-size: .75em
+
+  .mc_albums_index_album_notice_alt_url
+    display: none
+
+  .mc_albums_index_album_text_tracks
+    display: none
+
+  .mc_albums_index_albums
+    width: 18rem
+
+  .mc_albums_index_album_notice_alt_url
+    margin-bottom: margin.$one
+
+
+@media #{screen.$px481-767}
+  .mc_albums_index
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    margin-bottom: calc(0rem - margin.$third)
+    margin-top: calc(0rem - margin.$third)
+    max-width: 30rem
+
+  .mc_albums_index_album_picture
+    padding: margin.$third margin.$quarter
+
+  .mc_albums_index_album_picture_img
+    height: 7rem
+    width: 7rem
+
+  .mc_albums_index_album_text
+    padding: margin.$third margin.$quarter
+
+
+@media #{screen.$px768-}
+  .mc_albums_index
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    margin-bottom: calc(0rem - margin.$half)
+    margin-top: calc(0rem - margin.$half)
+    max-width: 35rem
+
+  .mc_albums_index_album_picture
+    padding: margin.$half margin.$quarter
+
+  .mc_albums_index_album_picture_img
+    height: 7rem
+    width: 7rem
+
+  .mc_albums_index_album_text
+    padding: margin.$half margin.$quarter

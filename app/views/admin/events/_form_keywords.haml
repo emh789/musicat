@@ -1,0 +1,21 @@
+.mca_resource_joins_buttons
+  = event_keyword_admin_button_to_new_join_single(event)
+
+.mca_resource_pane_title
+  = resource_joined_keywords_count_statement(event)
+
+- if event.does_have_keywords
+  = form_with(model: [:admin, event], url: admin_event_path(event, pane: :keywords), local: true, class: :mca_form) do |f|
+    %table.mca_form_data_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading title
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :event_keywords, event.event_keywords_sorted do |ek|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= ek.label :keyword_title, keyword_admin_link_title(ek.object.keyword)
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: ek
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will also remove any keywords with '#{icon_destroy}' box checked"

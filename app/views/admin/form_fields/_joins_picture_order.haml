@@ -1,0 +1,9 @@
+- if form.object.is_coverpicture
+  %fieldset.mca_form_joins_picture_attribute_order.mca_form_not_applicable
+    = form.label 'order', class: :mca_form_label
+    = form.text_field resource_order, autocomplete: :off, size: 2, class: :mca_form_input_number_field
+
+- else
+  %fieldset.mca_form_joins_picture_attribute_order
+    = form.label 'order', class: :mca_form_label
+    = form.text_field resource_order, autocomplete: :off, size: 2, class: :mca_form_input_number_field

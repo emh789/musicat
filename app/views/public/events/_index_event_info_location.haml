@@ -1,0 +1,8 @@
+.mc_events_index_event_info_location
+  %span.mc_events_index_event_info_location_venue
+    = event.venue
+  - if event.does_have_city_and_venue
+    %span
+      –
+  %span.mc_events_index_event_info_location_city
+    = event.city

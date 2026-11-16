@@ -1,0 +1,19 @@
+= content_for :page_subtitle, 'links'
+
+.mca_resource_header.resource_index_private
+  .mca_resource_header_category
+    Links Index
+
+.mca_links_index
+  .mca_links_index
+    - @links.each do |link|
+      .mca_links_index_link
+        .mca_links_index_link_name
+          = link_admin_link_name(link)
+        .mca_links_index_link_address
+          = link.address_href
+        .mca_links_index_link_resources
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_infopages', resource: link
+        .mca_links_index_link_visibility
+          = visibility_description(link.visibility)

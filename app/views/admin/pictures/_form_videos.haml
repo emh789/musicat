@@ -1,0 +1,22 @@
+.mca_resource_joins_buttons
+  = picture_video_admin_button_to_new_join_single(picture)
+
+.mca_resource_pane_title
+  = resource_joined_videos_count_statement(picture)
+
+- if picture.does_have_videos
+  = form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :videos), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading video title
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :video_pictures, picture.video_pictures_sorted do |vp|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= video_admin_link_title(vp.object.video)
+            %td.mca_form_joins_destroy= render 'admin/form_fields/destroy_box', form: vp
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will detach any videos with the #{icon_remove} box checked."

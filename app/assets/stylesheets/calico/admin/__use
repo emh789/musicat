@@ -1,0 +1,5 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen

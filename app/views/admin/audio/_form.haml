@@ -1,0 +1,20 @@
+.mca_resource_pane_title
+  Audio Details
+
+= form_with(model: [:admin, audio], local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = render 'admin/form_fields/text_field',      attribute: :title,              form: f
+    = render 'admin/form_fields/visibility',      attribute: :visibility,         form: f
+    = render 'admin/form_fields/auto_keyword',    attribute: :audio_keywords,     form: f
+    = render 'admin/form_fields/spacer'
+    = render 'admin/form_fields/text_field',      attribute: :audio_artist,       form: f
+    = render 'admin/form_fields/text_field',      attribute: :composer,           form: f
+    = render 'admin/form_fields/parseable_area',  attribute: :copyright,          form: f, selectable: selectable
+    = render 'admin/form_fields/date_field',      attribute: :date_released,      form: f, default_date: Date.current
+    = render 'admin/form_fields/parseable_area',  attribute: :description,        form: f, selectable: selectable
+    = render 'admin/form_fields/duration',        attribute: :duration,           form: f
+    = render 'admin/form_fields/isrc',            attribute: :isrc,               form: f
+    = render 'admin/form_fields/parseable_area',  attribute: :musicians,          form: f, selectable: selectable
+    = render 'admin/form_fields/parseable_area',  attribute: :personnel,          form: f, selectable: selectable
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

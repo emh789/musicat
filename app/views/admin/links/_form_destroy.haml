@@ -1,0 +1,9 @@
+.mca_resource_pane_title
+  Destroy link?
+  .mca_form_data_label_destroy= tag.i link.name
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, link], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Link', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

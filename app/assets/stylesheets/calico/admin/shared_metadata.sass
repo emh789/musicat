@@ -1,0 +1,84 @@
+@use '../spec/font'
+@use '../spec/margin'
+
+.mca_metadata_key
+  font-family: font.$family-description
+  font-weight: bold
+  margin-top: 0rem
+
+.mca_metadata_layout_block
+  display: flex
+  flex-direction: column
+  margin: margin.$one 0rem
+
+.mca_metadata_layout_inline .mca_metadata_key:after
+  content: ': '
+  margin-right: 0.5em
+
+.mca_metadata_layout_parser
+  padding: margin.$half 0rem
+
+.mca_metadata_layout_row
+  display: flex
+  flex-direction: row
+  justify-content: space-between
+
+.mca_metadata_pair
+  margin: margin.$half 0rem
+
+.mca_metadata_value
+  font-family: font.$family-data
+
+.mca_metadata_value_fragment_primary
+  font-family: font.$family-data
+
+.mca_metadata_value_fragment_secondary
+  font-family: font.$family-data
+  font-style: italic
+
+.mca_metadata_value_list
+
+.mca_metadata_value_list_item
+
+.mca_metadata_value_nil
+  font-family: font.$family-data
+  font-style: italic
+
+.mca_metadata_value_parser
+  font-family: font.$family-data
+
+.mca_metadata_value_parser_nil
+  font-family: font.$family-data
+  font-style: italic
+
+.mca_metadata_value_scroll
+  font-family: font.$family-data
+  overflow-x: scroll
+  overflow-y: hidden
+  text-wrap: nowrap
+  max-width: 22rem
+
+.mca_metadata_table_values
+  font-family: font.$family-data
+  width: 22rem
+
+.mca_metadata_table_value
+  min-width: 8em
+  padding: 0rem margin.$quarter
+  vertical-align: top
+
+.mca_metadata_table_value_wrap
+  min-width: 5em
+  padding-left: 0.5rem
+  padding-right: margin.$quarter
+  vertical-align: top
+
+.mca_metadata_table_value_right
+  vertical-align: top
+  padding: 0rem margin.$quarter
+  text-align: right
+
+.mca_metadata_table_value_visibility
+  content: ' '
+  padding: 0rem margin.$quarter
+  vertical-align: top

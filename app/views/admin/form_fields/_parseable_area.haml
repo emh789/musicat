@@ -1,0 +1,4 @@
+%fieldset.mca_form_attribute
+  = form.label attribute, class: :mca_form_label
+  = form.select attribute_markup_type(attribute), selectable.markup_parsers, { selected: form.object.public_send(attribute_markup_type(attribute)) }, { class: :mca_form_input_select_inline }
+  ~ form.text_area attribute_markup_text(attribute), autocomplete: :off, class: :mca_form_input_text_area

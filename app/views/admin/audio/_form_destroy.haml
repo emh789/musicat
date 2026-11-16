@@ -1,0 +1,15 @@
+.mca_resource_pane_title
+  Destroy audio?
+  .mca_form_data_label_destroy= audio.title
+
+%ul.mca_form_destroy_explanation
+  %li Audio will be removed from album and event tracklists.
+  %li <em>Imported</em> audio files will remain in the file system.
+  %li <em>Uploaded</em> audio attachment(s) will be deleted.
+
+.mca_form_warning
+  This action can not be undone.
+
+= form_with(model: [:admin, audio], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Audio', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

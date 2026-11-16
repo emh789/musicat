@@ -1,0 +1,8 @@
+= form_with(model: [:admin, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :marquee), local: true, class: :mca_form, method: :patch) do |f|
+  .mca_resource_pane_title
+    Marquee settings
+  .mca_form_attributes
+    = render 'admin/form_fields/check_box', attribute: :marquee_enabled, form: f
+    = render 'admin/form_fields/parseable_area', attribute: :marquee, form: f, selectable: selectable
+  .mca_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

@@ -1,0 +1,37 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+*, * *
+  border-style: border.$style
+  border-width: 0
+  box-sizing: content-box
+  line-height: font.$line-height
+  margin: 0
+  padding: 0
+  text-indent: 0
+
+html
+  font-size: 1rem
+
+hr
+  border-top-width: border.$width
+  margin: margin.$one 0
+
+ul, ol, li
+  margin-left: 1em
+
+h1
+  font-size: 1.5em
+
+h2
+  font-size: 1.25em
+
+h3, h4, h5, h6
+  font-size: 1em
+
+img
+  display: block
+
+table
+  border-collapse: collapse

@@ -1,0 +1,19 @@
+= content_for :page_subtitle, 'administrators'
+
+.mca_resource_header.resource_index_private
+  .mca_resource_header_category
+    Administrators
+
+.mca_administrators_index
+  %table.mca_administrators_index_administrators
+    %tr.mca_administrators_index_administrator_headings
+    - @administrators.sort{ |a,b| a.name.downcase <=> b.name.downcase }.each do |administrator|
+      %tr.mca_administrators_index_administrator
+        %td.mca_administrators_index_administrator_buttons
+          - if administrator == current_administrator
+            = button_admin_to_edit(edit_administrator_registration_path)
+        %td.mca_administrators_index_administrator_value
+          .mca_administrators_index_administrator_value_name= administrator.name
+          .mca_administrators_index_administrator_value_email= administrator.email
+          - if administrator.has_authority_to_write
+            .mca_administrators_index_administrator_value_authority Has authority to write

@@ -1,0 +1,31 @@
+.mca_resource_joins_buttons
+  = infopage_picture_admin_button_to_new_join_single(infopage)
+  -# TODO: These need testing.
+  -# = infopage_picture_admin_button_to_new_import(infopage)
+  -# = infopage_picture_admin_button_to_new_upload(infopage)
+  = infopage_picture_admin_button_to_new_join_by_keyword(infopage)
+
+.mca_resource_pane_title
+  = resource_joined_pictures_count_statement(infopage)
+
+- if infopage.does_have_pictures
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :pictures), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading
+          %th.mca_form_joins_heading title
+          %th.mca_form_joins_heading group
+          %th.mca_form_joins_heading order
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :infopage_items, infopage.infopage_pictures_sorted do |ip|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= picture_preferred_tag(ip.object.picture, html_class: :mca_form_joins_picture_thumbnail)
+            %td.mca_form_joins_value= picture_admin_link_title(ip.object.infopageable)
+            %td.mca_form_joins_value= ip.select :infopage_group, @form_metadata.selectables.item_groups, { selected: ip.object.infopage_group }, { class: :mca_form_input_select }
+            %td.mca_form_joins_value= ip.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :mca_form_input_number_field
+            %td.mca_form_joins_picture_remove= render 'admin/form_fields/destroy_box', form: ip
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will also detatch any pictures with '#{icon_destroy}' box checked"

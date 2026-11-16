@@ -1,0 +1,7 @@
+- if local_assigns[:audio]
+  .yowl_audio_single
+    .yowl_audio_single_controls
+      #yowl_play_pause.yowl_button.amplitude-play-pause{tabindex: -1}= render '/yowl/icons/play_pause'
+
+  = yowl_amplitude_init_single(audio).html_safe
+  = yowl_amplitude_progress_bar.html_safe

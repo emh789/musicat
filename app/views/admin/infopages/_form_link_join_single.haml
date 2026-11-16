@@ -1,0 +1,17 @@
+.mca_resource_pane_title
+  Add a link
+
+- if selectable.does_have_links
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :links), local: true, class: :mca_form) do |f|
+    .mca_form_data
+      = f.fields_for :infopage_items, f.object.infopage_links.build do |il|
+        = il.hidden_field :infopageable_type
+        = render 'admin/form_fields/collection_select', form: il, attribute: :infopageable_id, blank: true, collection: selectable.links, label: 'Link', text_method: :title
+        = render 'admin/form_fields/select', form: il, attribute: :infopage_group, blank: true, selectable: selectable.item_groups, label: 'Group'
+        = render 'admin/form_fields/text_field_sized', form: il, attribute: :infopage_group_order, autocomplete: :off, label: 'Order', size: 4
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No Links.

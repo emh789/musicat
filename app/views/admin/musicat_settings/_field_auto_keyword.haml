@@ -1,0 +1,7 @@
+.mca_form_attribute
+  = form.label :admin_forms_autokeyword_enabled, class: :mca_form_label
+  = form.check_box :admin_forms_autokeyword_enabled, class: :mca_form_input_checkbox_legacy
+  = form.label :admin_forms_autokeyword_enabled, '&nbsp;'.html_safe, class: :mca_form_input_checkbox_visible, tabindex: 0
+  %aside.mca_form_explanation
+    Automatically add the following keyword to new resources
+  = form.collection_select :admin_forms_autokeyword_id, selectable, :id, :title, { include_blank: false }, { class: :mca_form_input_select }

@@ -1,0 +1,23 @@
+.mca_resource_joins_buttons
+  = audio_event_admin_button_to_new_join_single(audio)
+
+.mca_resource_pane_title
+  = resource_joined_events_count_statement(audio)
+
+- if audio.does_have_events
+  = form_with(model: [:admin, audio], url: admin_audio_path(audio, pane: :events), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading event
+          %th.mca_form_joins_heading order
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :event_audio, audio.event_audio_sorted do |ea|
+          %tr.mc_form_data_hoins_values
+            %td.mca_form_joins_value= event_admin_link_date_and_venue(ea.object.event)
+            %td.mca_form_joins_value= ea.text_field :event_order, size: 4, class: :mca_form_data_attr_input_number_field
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: ea
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will also unjoin any events with '#{icon_destroy}' box checked"

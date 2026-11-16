@@ -1,0 +1,25 @@
+.mca_resource_joins_buttons
+  = infopage_article_admin_button_to_new_join_single(infopage)
+
+.mca_resource_pane_title
+  = resource_joined_articles_count_statement(infopage)
+
+- if infopage.does_have_articles
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :articles), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading title
+          %th.mca_form_joins_heading group
+          %th.mca_form_joins_heading order
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :infopage_items, infopage.infopage_articles_sorted do |ia|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= article_admin_link_title(ia.object.infopageable)
+            %td.mca_form_joins_value= ia.select :infopage_group, @form_metadata.selectables.item_groups, { selected: ia.object.infopage_group }, { class: :mca_form_input_select }
+            %td.mca_form_joins_value= ia.text_field :infopage_group_order, autocomplete: :off, size: 4, class: :mca_form_input_number_field
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: ia
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will also detatch any articles with '#{icon_destroy}' box checked"

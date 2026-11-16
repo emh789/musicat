@@ -1,0 +1,19 @@
+= content_for :page_subtitle, 'album'
+= content_for :page_subtitle_detail, @album.title
+
+.mc_albums_show
+  .mc_albums_show_picture
+    = render 'show_album_picture_img', album: @album
+  .mc_albums_show_text
+    = render 'show_album_text_title', album: @album
+    = render 'show_album_text_album_artist', album: @album
+    = render 'show_album_text_description', album: @album
+    = render 'show_album_text_musicians', album: @album
+    = render 'show_album_text_personnel', album: @album
+    = render 'show_album_text_date_released', album: @album
+    = render 'show_album_text_duration', album: @album
+    = render 'show_album_text_copyright', album: @album
+  .mc_albums_show_media
+    = render 'yowl/album_audio_playlist', album: @album
+  - if @album_neighbors
+    = render 'show_nav_neighbors', album_neighbors: @album_neighbors

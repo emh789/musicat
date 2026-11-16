@@ -1,0 +1,34 @@
+= content_for :page_subtitle, 'help'
+= content_for :page_subtitle_detail, 'content storage'
+
+.mca_help_general
+  %h2.mca_help_general_title
+    Content Storage
+  %p.mca_help_general_content_text
+    A&amp;R.local includes different methods of accessing content files for audio, pictures, and videos: <i>imported</i>, <i>uploaded</i>, <i>embed</i>, and <i>url</i>.
+  %hr
+  %h3.mca_help_general_content_title
+    Imported
+  %p.mca_help_general_content_text
+    For administrators who want to transfer media files to the server via command line tools such as <i>rsync</i> or <i>scp</i>.
+  %p.mca_help_general_content_text
+    The attribute <i>source_imported_file_path</i> is the location of the file relative to the imported directory 'public/portfolio'.
+  %hr
+  %h3.mca_help_general_content_title
+    Uploaded
+  %p.mca_help_general_content_text
+    For administrators who want to transfer media files through the web browser.
+  %p.mca_help_general_content_text
+    Uploading is simplest to use, but more difficult to manaully manage files on the server.
+  %hr
+  %h3.mca_help_general_content_title
+    Embed (experimental, videos only)
+  %p.mca_help_general_content_text
+    The <b>embed</b> option allows the content and media player from another service. A compatible service will provide an embed code in its sharing options.
+  %p.mca_help_general_content_text
+    Embedding is suitable for large media files, or for integrating view history between A&amp;R.local and a primary service.
+  %hr
+  %h3.mca_help_general_content_title
+    URL
+  %p.mca_help_general_content_text
+    (experimental, videos hosted by YouTube only)

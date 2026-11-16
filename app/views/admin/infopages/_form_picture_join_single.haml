@@ -1,0 +1,17 @@
+.mca_resource_pane_title
+  Add picture
+
+- if selectable.does_have_pictures
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :pictures), local: true, class: :mca_form) do |f|
+    .mca_form_attributes
+      = f.fields_for :infopage_items, f.object.infopage_pictures.build do |ip|
+        = ip.hidden_field :infopageable_type
+        = render 'admin/form_fields/picture_select', form: ip, attribute: :infopageable_id, selectable: selectable
+        = render 'admin/form_fields/select', form: ip, attribute: :infopage_group, blank: true, selectable: selectable.item_groups, label: 'Group'
+        = render 'admin/form_fields/text_field_sized', form: ip, attribute: :infopage_group_order, autocomplete: :off, label: 'Order', size: 4
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No pictures.

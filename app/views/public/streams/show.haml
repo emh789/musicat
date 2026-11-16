@@ -1,0 +1,10 @@
+= content_for :page_subtitle, 'stream'
+= content_for :page_subtitle_detail, @stream.title
+
+.mc_streams_show
+  .mc_streams_show_title
+    -# = @stream.title
+  .mc_streams_show_html_element
+    = @stream.html_element_conditionally
+  .mc_streams_show_description
+    = parser_div @stream.description_props

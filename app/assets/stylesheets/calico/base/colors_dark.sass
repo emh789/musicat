@@ -1,0 +1,96 @@
+@use 'sass:color'
+@use '../spec/border'
+@use '../spec/media_screen' as screen
+@use '../spec/palette_dark' as dark
+
+@media screen and (prefers-color-scheme: dark)
+  *
+    border-color: dark.$border
+    scrollbar-color: dark.$scrollbar-fg dark.$scrollbar-bg
+
+  *:focus
+    outline-color: dark.$focus-outline
+    outline-style: border.$style
+    outline-width: border.$width-wide
+
+  ::selection
+    background-color: dark.$selection-bg
+    color: dark.$selection-fg
+
+  hr
+    border-color: dark.$fg-mid
+
+  input, select, textarea
+    background-color: dark.$button-bg
+    color: dark.$fg
+    border-color: dark.$border
+
+  .mc_fa_icon, .mc_fa_icon_mini
+    filter: invert(80%) sepia(20%) saturate(40%) hue-rotate(350deg) brightness(102%) contrast(104%)
+
+  .mc_footer
+    background-color: dark.$bg1
+
+  .mc_header
+    background-color: dark.$bg1
+
+  #mc_header_nav
+    background-color: dark.$bg1
+
+  #mc_header_nav_select
+    background-color: dark.$bg2
+    border-color: dark.$bg2
+
+  .mc_marquee
+    background-color: dark.$marquee-bg
+    color: dark.$marquee-fg
+    filter: dark.$marquee-bold-link
+    text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.75)
+
+  .mc_outline
+    background-color: dark.$focus-outline !important
+    border-color: dark.$focus-outline !important
+    border-width: border.$width-wide
+
+  .musicat
+    background: dark.$bg1
+    color: dark.$fg
+
+  // .color_bg_td
+  //   background-color: dark.$bg-td
+
+  .color_bg_heading
+    background-color: dark.$bg3
+
+  .color_bg1
+    background-color: dark.$bg1
+
+  .color_bg2
+    background-color: dark.$bg2
+
+  .color_bg3
+    background-color: dark.$button-bg
+
+  .color_highlight_bg
+    background-color: dark.$highlight-bg
+
+  .color_bg_logo
+    background-color: #777
+    border-color: dark.$border
+
+  .color_border
+    border-color: dark.$border
+
+  .color_fg
+    color: dark.$fg
+
+  .color_link, a
+    color: dark.$fg-link
+
+  .neighbor_nav_button
+    background-color: dark.$button-bg
+
+
+@media #{screen.$px-480} and ( prefers-color-scheme: dark )
+  body
+    background: dark.$narrow-foundation

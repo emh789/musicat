@@ -1,0 +1,69 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+
+.mca_pictures_show
+  align-items: start
+  column-gap: margin.$one
+  display: grid
+  padding: margin.$one
+  row-gap: margin.$one
+
+.mca_pictures_show_attributes
+  font-size: 0.9em
+  grid-area: attributes
+
+.mca_pictures_show_picture
+  grid-area: picture
+
+.mca_pictures_show_picture_img
+  height: 20rem
+  width: 20rem
+
+.mca_pictures_show_title
+  grid-area: title
+
+.mca_pictures_show_joins
+  align-items: start
+  display: grid
+  font-size: 0.9em
+  grid-area: joins
+  grid-template-areas: 'albums' 'events' 'keywords' 'videos'
+  grid-template-rows: min-content min-content min-content min-content
+  padding: font.$line-height 0rem
+  row-gap: font.$line-height
+
+.mca_picture_show_vendors
+  grid-area: vendors
+
+.mca_pictures_show_etc
+  grid-area: etc
+
+
+@media #{screen.$px-480}
+  .mca_pictures_show
+    grid-template-areas: 'title' 'picture' 'attributes' 'joins' 'etc'
+
+
+@media #{screen.$px481-767}
+  .mca_pictures_show
+    grid-template-areas: 'title' 'picture' 'attributes' 'joins' 'etc'
+    grid-template-columns: 25rem
+
+
+@media #{screen.$px768-1279}
+  .mca_pictures_show
+    column-gap: margin.$double
+    grid-template-areas: 'title joins' 'picture joins' 'attributes joins' 'etc etc'
+    grid-template-columns: 22rem 22rem
+
+
+@media #{screen.$px1280-}
+  .mca_pictures_show
+    column-gap: margin.$double
+    grid-template-areas: 'title attributes joins' 'picture attributes joins' 'etc etc etc'
+    grid-template-columns: 20rem 25rem 22rem
+    grid-template-rows: min-content 1fr min-content

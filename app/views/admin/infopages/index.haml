@@ -1,0 +1,18 @@
+= content_for :page_subtitle, 'infopages'
+
+.mca_resource_header.resource_index_private
+  .mca_resource_header_category
+    Infopage Index
+
+.mca_infopages_index
+  - @infopages.each do |infopage|
+    .mca_infopages_index_infopage
+      .mca_infopages_index_infopage_order
+        = infopage.index_order.to_s.concat('.')
+      .mca_infopages_index_infopage_title
+        = link_to infopage.title, admin_infopage_path(infopage.id_public), class: :mca_infopage_index_infopage_text_title_link
+      .mca_infopages_index_infopage_resources
+        %dl.mca_index_joined_resources
+          = render 'admin/shared/index_joined_articles', resource: infopage
+          = render 'admin/shared/index_joined_links', resource: infopage
+          = render 'admin/shared/index_joined_pictures', resource: infopage

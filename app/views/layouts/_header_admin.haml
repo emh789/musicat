@@ -1,0 +1,15 @@
+%header.mca_header
+  -# .mca_header_logo
+  -#   = link_to (app_logo html_class: :mca_header_logo_thumbnail), admin_root_path
+  .mca_header_text
+    %h1.mca_header_text_artist
+      = link_to @musicat_settings.artist_name, root_path, class: [:mca_header_text_artist_name, :color_fg], target: '_blank'
+    %h2.mca_header_text_title
+      = link_to 'administrator access', admin_root_path, class: :color_fg
+    %div.mc_admin_header_text_email
+      = current_administrator.email
+  %form.mca_header_nav
+    = nav_admin_select
+    = nav_admin_buttons
+  .mca_header_messages
+    = render 'layouts/header_admin_flash_parser'

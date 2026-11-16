@@ -1,0 +1,16 @@
+= content_for :page_subtitle, 'event'
+= content_for :page_subtitle_detail, @event.date_and_venue
+
+.mc_events_show
+  .mc_events_show_picture
+  -# = render 'show_event_coverpicture', event: @event
+  .mc_events_show_text
+    = render 'show_event_text_datetime', event: @event
+    = render 'show_event_text_title', event: @event
+    = render 'show_event_text_alert', event: @event
+    = render 'show_event_text_location', event: @event
+    = render 'show_event_text_details', event: @event
+  .mc_events_show_media
+    = render 'yowl/event_audio_playlist', event: @event
+  - if @event_neighbors
+    = render 'show_nav_neighbors', event_neighbors: @event_neighbors

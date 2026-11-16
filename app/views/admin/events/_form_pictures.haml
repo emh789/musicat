@@ -1,0 +1,26 @@
+.mca_resource_joins_buttons
+  = event_picture_admin_button_to_new_join_single(event)
+  = event_picture_admin_button_to_new_import(event)
+  = event_picture_admin_button_to_new_upload(event)
+  = event_picture_admin_button_to_new_join_by_keyword(event)
+
+.mca_resource_pane_title
+  = resource_joined_pictures_count_statement(event)
+
+- if event.does_have_pictures
+  = form_with(model: [:admin, event], url: admin_event_path(event, pane: :pictures), local: true, class: :mca_form) do |f|
+    .mca_form_attributes
+      = f.label :event_pictures_sort_method, 'Sort pictures by:', class: :mca_form_data_attr_label
+      = f.select :event_pictures_sort_method, selectable.event_pictures_sorters, {selected: f.object.event_pictures_sort_method}, {class: :mca_form_data_attr_input_select}
+    .mca_form_joins
+      = f.fields_for :event_pictures, event.event_pictures_sorted do |ep|
+        .mca_form_joins_picture
+          = render 'admin/form_fields/joins_picture_thumbnail', form: ep
+          = render 'admin/form_fields/joins_picture_title', form: ep
+          = render 'admin/form_fields/joins_picture_coverpicture', form: ep
+          = render 'admin/form_fields/joins_picture_order', form: ep, resource_order: :event_order
+          = render 'admin/form_fields/joins_picture_remove', form: ep
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will also remove any pictures with the #{icon_remove} box checked"

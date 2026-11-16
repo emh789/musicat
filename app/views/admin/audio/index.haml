@@ -1,0 +1,32 @@
+= content_for :page_subtitle, 'audio'
+
+.mca_resource_header
+  .mca_resource_header_category
+    Audio Index
+
+.mca_audio_index
+  .mca_audio_index_filter
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = audio_admin_filter_select f, params, class: [:mc_active_filter, :mca_audio_index_filter_select]
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  .mca_audio_index_audios
+    - @audio.each do |audio|
+      .mca_audio_index_audio
+        .mca_audio_index_audio_title
+          = audio_admin_link_title(audio)
+        .mca_audio_index_audio_source
+          = audio_file_source_path_with_indicator_class(audio)
+        .mca_audio_index_audio_joins
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_albums', resource: audio
+            = render 'admin/shared/index_joined_events', resource: audio
+            = render 'admin/shared/index_joined_keywords', resource: audio
+        .mca_audio_index_audio_date
+          = audio.date_released
+        .mca_audio_index_audio_duration
+          = audio.duration
+        .mca_audio_index_audio_isrc
+          = audio.isrc_hyphenated
+        .mca_audio_index_audio_visibility
+          = visibility_description(audio.visibility)

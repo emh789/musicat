@@ -1,0 +1,4 @@
+.mca_index_joined_resource
+  %dh.mca_index_joined_resource_heading= resource_joined_pictures_count_statement(resource, punctuated: true)
+  - resource.pictures_sorted.each do |picture|
+    %dd.mca_index_joined_resource_data= parser_inline(picture.title_props)

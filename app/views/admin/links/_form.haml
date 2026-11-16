@@ -1,0 +1,12 @@
+= form_with(model: [:admin, link], local: true, class: :mca_form) do |f|
+  .mca_resource_pane_title
+    Link details
+  .mca_form_data
+    = render 'admin/form_fields/text_field',      attribute: :name,                 form: f
+    = render 'admin/form_fields/visibility',      attribute: :visibility,           form: f
+    = render 'admin/form_fields/spacer'
+    = render 'admin/form_fields/text_field',      attribute: :address_href,         form: f
+    = render 'admin/form_fields/text_field',      attribute: :address_inline_text,  form: f
+    = render 'admin/form_fields/parseable_area',  attribute: :details,              form: f, selectable: selectable
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

@@ -1,0 +1,25 @@
+@use '../spec/font'
+@use '../spec/margin'
+
+.mc_streams_show
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  padding: margin.$one
+
+.mc_streams_show_description
+  font-family: font.$family-description
+  margin: margin.$one
+  text-align: center
+
+.mc_streams_show_html_element
+  font-family: font.$family-application
+  margin: margin.$one
+  max-width: 50rem
+
+.mc_streams_show_title
+  font-family: font.$family-title
+  font-size: 1.1rem
+  font-weight: bold
+  margin: margin.$one

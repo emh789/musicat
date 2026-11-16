@@ -1,0 +1,12 @@
+.mca_resource_pane_title Remove audio attachment?
+  .mca_form_subheading= audio.source_uploaded.filename
+
+  %ul.mc_form_explanation
+    %li Attachment will be removed from audio entry.
+    %li Audio entry will remain in the database.
+
+  .mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, audio], url: admin_audio_purge_source_uploaded_path(audio, pane: :source), local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Purge Attachment', class: :mca_form_destroy, data: { confirm: 'Are you sure?' }

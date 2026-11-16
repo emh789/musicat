@@ -1,0 +1,15 @@
+= content_for :page_subtitle, 'info'
+
+.mc_infopage_show
+  - if @infopage.does_have_items_group_top
+    .mc_infopage_show_group_top
+      - @infopage.items_group_top_sorted.each do |item|
+        = render 'show_infopage_item', item: item
+  - if @infopage.does_have_items_group_left
+    .mc_infopage_show_group_left
+      - @infopage.items_group_left_sorted.each do |item|
+        = render 'show_infopage_item', item: item
+  - if @infopage.does_have_items_group_right
+    .mc_infopage_show_group_right
+      - @infopage.items_group_right_sorted.each do |item|
+        = render 'show_infopage_item', item: item

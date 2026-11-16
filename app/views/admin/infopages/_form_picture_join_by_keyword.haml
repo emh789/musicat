@@ -1,0 +1,13 @@
+.mca_resource_pane_title
+  Add picture(s) by keyword
+
+- if selectable.does_have_keywords
+  = form_with model: [:admin, infopage], url: admin_infopage_add_pictures_by_keyword_path(infopage, pane: :pictures), local: true, class: :mca_form do |f|
+    .mca_form_attributes
+      = render 'admin/form_fields/add_by_keyword', form: f, selectable: selectable, text_method: :title_with_pictures_count
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No keywords.

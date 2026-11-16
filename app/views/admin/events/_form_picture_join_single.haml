@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add picture
+
+- if selectable.does_have_pictures
+  = form_with(model: [:admin, event], url: admin_event_path(event, pane: :pictures), local: true, class: :mca_form) do |f|
+    .mca_form_attributes
+      = f.fields_for :event_pictures, event.event_pictures.build do |ap|
+        = render 'admin/form_fields/picture_select', form: ap, selectable: selectable
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No pictures.

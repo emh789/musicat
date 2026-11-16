@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+%head
+  = html_head_title_public(@musicat_settings)
+  = html_head_meta_charset_tag
+  = html_head_meta_viewport_tags
+
+  = favicon_link_tag(html_head_favicon_preferred_url(@musicat_settings), rel: 'icon')
+  = favicon_link_tag(html_head_favicon_preferred_url(@musicat_settings), rel: 'apple-touch-icon')
+  -# = yield(:html_head_meta_description)
+
+  = javascript_include_tag('application', 'amplitude')
+  = stylesheet_link_tag('application', 'public', 'yowl')
+  = csrf_meta_tags
+
+%body
+  .musicat
+    = render 'layouts/header_public'
+    = render 'layouts/marquee'
+    = render 'layouts/content'
+    = render 'layouts/footer'
+
+  %script
+    Musicat.FrontEnd._onReady.initialize();
+
+</html>

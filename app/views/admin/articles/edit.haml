@@ -1,0 +1,20 @@
+= content_for :page_subtitle, 'editing article'
+= content_for :page_subtitle_detail, @article.title
+
+.mca_resource_header.resource_edit
+  .mca_resource_header_category
+    Editing Article
+  .mca_resource_header_title
+    = @article.title
+  .mca_resource_header_buttons
+    = article_admin_button_to_edit_previous(@article_neighbors.previous, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+    = article_admin_button_to_done_editing(@article)
+    = article_admin_button_to_edit_next(@article_neighbors.next, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+  = render '/admin/form_fields/errors', resource: @article
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = article_admin_edit_nav_button(article: @article, category: category, current_pane: @form_metadata.current_pane)
+
+.mca_articles_edit.mca_resource_pane
+  = render @form_metadata.partial_name, article: @article, selectable: @form_metadata.selectables

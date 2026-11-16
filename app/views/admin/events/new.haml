@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new event'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Event
+  = render '/admin/form_fields/errors', resource: @event
+
+.mca_events_new.mca_resource_pane
+  = render 'form', event: @event, selectable: @form_metadata.selectables

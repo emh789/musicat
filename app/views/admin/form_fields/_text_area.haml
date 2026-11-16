@@ -1,0 +1,5 @@
+%fieldset.mca_form_attribute
+  = form.label attribute, class: :mca_form_label
+  - if local_assigns[:aside]
+    %aside.mca_form_explanation= "#{aside}"
+  = form.text_area attribute, autocomplete: :off, class: :mca_form_input_text_area, tabindex: 0

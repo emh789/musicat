@@ -1,0 +1,10 @@
+.mca_resource_pane_title
+  Import picture
+
+= form_with(model: [:admin, infopage], url: admin_infopage_picture_create_from_import_path(infopage), local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = f.fields_for :infopage_items, f.object.infopage_pictures.build do |ip|
+      = ip.hidden_field :infopageable_type
+      = render 'admin/form_fields/text_field', attribute: :source_imported_file_path, form: ip, aside: "#{source_imported_dirname(trailing_separator: true)}"
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

@@ -1,0 +1,9 @@
+.mca_resource_pane_title
+  Import audio
+
+= form_with(model: [:admin, keyword], url: admin_keyword_audio_create_from_import_path(keyword), local: true, class: :mca_form) do |f|
+  .mca_form_data
+    = f.fields_for :audio, keyword.audio.build do |a|
+      = render 'admin/form_fields/text_field', attribute: :source_imported_file_path, form: a, aside: "#{source_imported_dirname(trailing_separator: true)}"
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

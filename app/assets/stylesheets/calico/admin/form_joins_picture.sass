@@ -1,0 +1,41 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+
+.mca_form_joins_picture_attributes
+  display: grid
+  grid-template-areas: 'title' 'iscover' 'order'
+  padding: margin.$half margin.$one
+  row-gap: margin.$half
+
+.mca_form_joins_picture_attribute_iscoverpicture
+  display: grid
+  font-family: font.$family-application
+  grid-area: iscover
+  grid-template-areas: 'label inline'
+
+.mca_form_joins_picture_attribute_order
+  display: flex
+  flex-direction: row
+  gap: margin.$one
+  font-family: font.$family-application
+  grid-area: order
+
+.mca_form_joins_picture_attribute_title
+  font-family: font.$family-data
+  font-size: 1.1em
+  font-weight: bold
+
+.mca_form_joins_picture_remove
+  font-family: font.$family-application
+  padding: calc(margin.$half + margin.$fifth) margin.$quarter
+  max-width: 3rem
+  vertical-align: top
+
+.mca_form_joins_picture_thumbnail
+  @include border.shadowed
+  grid-area: thumbnail
+  max-width: 6rem
+  max-height: 6rem
+  margin-top: margin.$half

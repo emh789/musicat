@@ -1,0 +1,7 @@
+.mca_album_show_vendors
+  .mca_metadata_pair
+    .mca_metadata_key Vendor markdown links
+    - if album.vendor_markdown_links.to_s != ''
+      %dd.mca_metadata_value_scroll= album.vendor_markdown_links
+    - else
+      %dd.mca_metadata_value_nil (none)

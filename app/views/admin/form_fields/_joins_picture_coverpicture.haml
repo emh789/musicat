@@ -1,0 +1,4 @@
+%fieldset.mca_form_joins_picture_attribute_iscoverpicture
+  = form.label 'Cover', class: :mca_form_label
+  = form.check_box :is_coverpicture, class: :mca_form_input_checkbox_legacy, data: { picture: form.object.picture.slug }
+  = form.label :is_coverpicture, '&nbsp;'.html_safe, class: :mca_form_input_checkbox_visible, tabindex: 0

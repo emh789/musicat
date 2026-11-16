@@ -1,0 +1,23 @@
+= content_for :page_subtitle, 'keywords'
+
+.mca_resource_header
+  .mca_resource_header_category
+    Keywords Index
+
+.mca_keywords_index
+  - @keywords.each do |keyword|
+    .mca_keywords_index_keyword
+      .mca_keywords_index_keyword_title
+        = link_to keyword.title, admin_keyword_path(keyword.id_public), class: :mca_keywords_index_keyword_title_link
+      .mca_keywords_index_keyword_resources
+        %dl.mca_index_joined_resources
+          = render 'admin/shared/index_joined_albums', resource: keyword
+          = render 'admin/shared/index_joined_audio', resource: keyword
+          = render 'admin/shared/index_joined_events', resource: keyword
+          = render 'admin/shared/index_joined_pictures', resource: keyword
+          = render 'admin/shared/index_joined_videos', resource: keyword
+      - if keyword.can_select?
+        %dl.mca_keywords_index_keyword_can_select
+          %dh.mca_keywords_index_keyword_can_select_title Can select
+          - keyword.can_select.each do |cs|
+            %dd.mca_keywords_index_keyword_can_select_resource= cs

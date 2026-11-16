@@ -1,0 +1,29 @@
+= content_for :page_subtitle, 'editing ISRC data'
+
+.mca_resource_header.resource_edit
+  .mca_resource_header_category
+    Audio and Video
+  .mca_resource_header_title
+    Edit ISRC data
+  .mca_resource_header_buttons
+    = isrc_admin_button_to_done_editing(filter: params[:filter])
+
+.mca_isrc_edit
+  .mca_isrc_edit_filter
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = isrc_admin_filter_select(f, params, action: :edit, class: [:mc_active_filter, :mca_isrc_index_filter_select])
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  .mca_form_bulk
+    - @resources.each do |resource|
+      = form_with model: [:admin, resource], local: true, url: admin_isrc_update_path(resource.id_admin, type: resource.class, filter: params[:filter]), class: :mca_form_bulk_item do |f|
+        .mca_form_bulk_item_attributes
+          .mca_form_bulk_item_attribute= f.object.class
+          .mca_form_bulk_item_attribute= resource_isrcable_admin_link(f.object)
+        .mca_form_bulk_item_input
+          .mca_form_bulk_item_input_multi= f.text_field :isrc_country_code,      autocomplete: :off, size: 2, class: :mca_form_bulk_item_input_text_field
+          .mca_form_bulk_item_input_multi= f.text_field :isrc_registrant_code,   autocomplete: :off, size: 3, class: :mca_form_bulk_item_input_text_field
+          .mca_form_bulk_item_input_multi= f.text_field :isrc_year_of_reference, autocomplete: :off, size: 2, class: :mca_form_bulk_item_input_text_field
+          .mca_form_bulk_item_input_multi= f.text_field :isrc_designation_code,  autocomplete: :off, size: 5, class: :mca_form_bulk_item_input_text_field
+        .mca_form_bulk_item_action
+          = f.submit 'Update', class: :mca_form_bulk_item_action_submit

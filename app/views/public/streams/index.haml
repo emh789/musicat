@@ -1,0 +1,8 @@
+= content_for :page_subtitle, 'streams'
+
+.mc_admin_streams_index
+  %table.mc_admin_streams_index
+    - @streams.each do |stream|
+      %tr.mc_admin_streams_index_stream
+        %td.mc_admin_streams_index_stream_title
+          = stream.title

@@ -1,0 +1,114 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.mca_form_input_checkbox_legacy
+  align-self: center
+  grid-area: inline
+  justify-self: center
+  visibility: hidden
+
+.mca_form_input_checkbox_visible
+  border-width: border.$width
+  display: inline-block
+  grid-area: inline
+  height: 1.0em
+  width: 1.0em
+
+.mca_form_input_destroybox_legacy
+  grid-area: inline
+  visibility: hidden
+
+.mca_form_input_destroybox_visible
+  border-width: border.$width
+  display: inline-block
+  height: 1.0em
+  width: 1.0em
+
+.mca_form_input_file_upload
+  border-radius: border.$radius-wide
+  border-width: border.$width
+  content-box: border-box
+  display: inline-block
+  margin: margin.$half margin.$one
+  padding: margin.$half
+  text-align: center
+  text-decoration: none
+  font-family: font.$family-application
+  font-size: 1rem
+  grid-area: input
+  margin: 0
+
+.mca_form_input_date
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  justify-self: start
+  padding: margin.$eighth margin.$half
+
+.mca_form_input_number_field
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  padding: margin.$eighth margin.$quarter
+  text-align: right
+  width: 2rem
+
+.mca_form_input_select
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  grid-area: input
+  padding: margin.$eighth margin.$half
+
+.mca_form_input_select_inline
+  grid-area: inline
+  justify-self: end
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  margin-bottom: 1px
+  padding: 0 margin.$quarter
+
+.mca_form_input_select_multi
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  padding: margin.$quarter margin.$half
+  margin-right: margin.$quarter
+  &:last-child
+    margin-right: 0
+
+.mca_form_input_select_picture
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  grid-area: input
+  margin-bottom: margin.$one
+  padding: margin.$eighth margin.$half
+
+.mca_form_input_text_area
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  min-height: 10rem
+  padding: margin.$quarter margin.$half
+
+.mca_form_input_text_field
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  padding: margin.$eighth margin.$half
+
+.mca_form_input_text_sized
+  grid-area: input
+  justify-self: start
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  padding: margin.$eighth margin.$half

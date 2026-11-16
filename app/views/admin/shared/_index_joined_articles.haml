@@ -1,0 +1,4 @@
+.mca_index_joined_resource
+  %dh.mca_index_joined_resource_heading= resource_joined_articles_count_statement(resource, punctuated: true)
+  - resource.articles_sorted.each do |article|
+    %dd.mca_index_joined_resource_data= article.title

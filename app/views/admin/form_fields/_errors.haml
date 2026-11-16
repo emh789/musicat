@@ -1,0 +1,9 @@
+- if resource.errors.any?
+  .mca_resource_errors
+    .mca_resource_errors_count
+      = pluralize(resource.errors.count, "error")
+      prohibited this post from being saved
+    %ul.mca_resource_errors_list
+      - resource.errors.full_messages.each do |msg|
+        %li.mca_resource_errors
+          = msg

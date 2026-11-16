@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new stream'
+
+.mc_admin_resource_header.resource_new
+  .mc_admin_resource_header_category
+    New Stream
+  = render '/admin/form_fields/errors', resource: @stream
+
+.mc_admin_streams_new
+  = render 'form', stream: @stream, selectable: @form_metadata.selectables

@@ -1,0 +1,12 @@
+= form_with(model: [:admin, keyword], local: true, class: :mca_form) do |f|
+  .mca_resource_pane_title
+    Keyword Details
+  .mca_form_attributes
+    = render 'admin/form_fields/text_field',  attribute: :title,    form: f
+    = render 'admin/form_fields/can_select',  attribute: :albums,   form: f
+    = render 'admin/form_fields/can_select',  attribute: :audio,    form: f
+    = render 'admin/form_fields/can_select',  attribute: :events,   form: f
+    = render 'admin/form_fields/can_select',  attribute: :pictures, form: f
+    = render 'admin/form_fields/can_select',  attribute: :videos,   form: f
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

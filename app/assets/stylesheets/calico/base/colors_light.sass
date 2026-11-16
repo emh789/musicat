@@ -1,0 +1,96 @@
+@use 'sass:color'
+@use '../spec/border'
+@use '../spec/media_screen' as screen
+@use '../spec/palette_light' as light
+
+@media screen and (prefers-color-scheme: light)
+  *
+    border-color: light.$border
+    scrollbar-color: light.$scrollbar-fg light.$scrollbar-bg
+
+  *:focus
+    outline-color: light.$focus-outline
+    outline-style: border.$style
+    outline-width: border.$width-wide
+
+  ::selection
+    background-color: light.$selection-bg
+    color: light.$fg
+
+  hr
+    border-color: light.$fg-mid
+
+  input, select, textarea
+    background-color: light.$bg1
+    color: light.$fg
+    border-color: light.$border
+
+  .mc_fa_icon, .mc_fa_icon_mini
+    filter: invert(30%) sepia(0%) saturate(227%) hue-rotate(163deg) brightness(111%) contrast(88%)
+
+  .mc_footer
+    background-color: light.$bg1
+
+  .mc_header
+    background-color: light.$bg1
+
+  #mc_header_nav
+    background-color: light.$border
+
+  #mc_header_nav_select
+    background-color: light.$bg2
+    border-color: light.$bg2
+
+  .mc_marquee
+    background-color: light.$marquee-bg
+    color: light.$marquee-fg
+    filter: light.$marquee-bold-link
+    text-shadow: 0rem 0rem 0.1rem rgba(0,0,0,0.125)
+
+  .mc_outline
+    background-color: light.$focus-outline !important
+    border-color: light.$focus-outline !important
+    border-width: border.$width-wide
+
+  .musicat
+    background: light.$bg1
+    color: light.$fg
+
+  // .color_bg_td
+  //   background-color: light.$bg-td
+
+  .color_bg_heading
+    background-color: light.$bg3
+
+  .color_bg1
+    background-color: light.$bg1
+
+  .color_bg2
+    background-color: light.$bg2
+
+  .color_bg3
+    background-color: light.$button-bg
+
+  .color_highlight_bg
+    background-color: light.$highlight-bg
+
+  .color_bg_logo
+    background-color: #777
+    border-color: light.$border
+
+  .color_border
+    border-color: light.$border
+
+  .color_fg
+    color: light.$fg
+
+  .color_link, a
+    color: light.$fg-link
+
+  .neighbor_nav_button
+    background-color: light.$button-bg
+
+
+@media #{screen.$px-480} and ( prefers-color-scheme: light )
+  body
+    background: light.$narrow-foundation

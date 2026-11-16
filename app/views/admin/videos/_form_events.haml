@@ -1,0 +1,23 @@
+.mca_resource_joins_buttons
+  = video_event_admin_button_to_new_join_single(video)
+
+.mca_resource_pane_title
+  = resource_joined_events_count_statement(video)
+
+- if video.does_have_events
+  = form_with(model: [:admin, video], url: admin_video_path(video, pane: :events), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading title
+          %th.mca_form_joins_heading order
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :event_videos do |ev|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= ev.label :event_title, event_admin_link_date_and_venue(ev.object.event)
+            %td.mca_form_joins_value= ev.text_field :event_order, autocomplete: :off, size: 4, class: :mca_form_input_text_field
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', :_destroy
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will also detach any events with '#{icon_destroy}' box checked"

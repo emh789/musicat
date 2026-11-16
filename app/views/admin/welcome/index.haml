@@ -1,0 +1,13 @@
+= content_for :page_subtitle, 'help index'
+
+.mca_welcome
+  .mca_welcome_text
+    MusiCat – music catalog publishing and management
+  = musicat_logo html_class: :mca_welcome_logo
+  .mca_welcome_help
+    %h3.mca_welcome_help_title Help Topics
+    %ul.mca_welcome_help_contents
+      %li.mca_welcome_help_contents_topic= link_to 'Content Storage', admin_welcome_content_storage_path
+      %li.mca_welcome_help_contents_topic= link_to 'Icons', admin_welcome_icons_path
+      %li.mca_welcome_help_contents_topic= link_to 'Markup types explained', admin_welcome_markup_types_path
+      %li.mca_welcome_help_contents_topic= link_to 'Visibility', admin_welcome_visibility_path

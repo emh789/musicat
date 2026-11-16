@@ -1,0 +1,28 @@
+= content_for :page_subtitle, 'link'
+= content_for :page_subtitle_detail, @link.name
+
+.mca_resource_header.resource_show
+  .mca_resource_header_category
+    Link
+  .mca_resource_header_title
+    = @link.title
+  .mca_resource_header_buttons
+    = link_admin_button_to_previous(@link_neighbors.previous)
+    = link_admin_button_to_edit(@link)
+    = link_admin_button_to_next(@link_neighbors.next)
+
+.mca_links_show
+  .mca_links_show_name
+    = render 'admin/shared/metadata_pair', key: 'Name', value: @link.name
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @link.visibility
+  .mca_links_show_display
+    = link_parse(@link)
+  .mca_links_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'Address href', value: @link.address_href
+    = render 'admin/shared/metadata_pair', key: 'Address inline text', value: @link.address_inline_text
+    = render 'admin/shared/metadata_pair', key: 'Address type', value: @link.address_type
+    = render 'admin/shared/metadata_pair', key: 'Details', text_props: @link.details_props
+  .mca_links_show_joins
+    = render 'admin/shared/show_joined_infopages', resource: @link
+  %dl.mca_links_show_etc
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @link.updated_at

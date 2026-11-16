@@ -1,0 +1,15 @@
+%table.mca_show_joined_audios
+  %caption.mca_show_joined_audios_count
+    = resource_joined_audio_count_label(resource)
+  - if resource.does_have_audio
+    %tbody
+      - resource.joined_audio_sorted.each do |joined_audio|
+        %tr.mca_show_joined_audio
+          %td.mca_show_joined_audio_title
+            = audio_admin_link_title(joined_audio.audio)
+          %td.mca_show_joined_audio_order
+            = "#{joined_audio.order}" if joined_audio.does_have_order
+          %td.mca_show_joined_audio_duration
+            = joined_audio.audio.duration
+          %td.mca_show_joined_audio_visibilty
+            = visibility_abbreviation(joined_audio.audio.visibility)

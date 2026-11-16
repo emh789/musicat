@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Destroy picture?
+  .mca_form_data_label_destroy= tag.i picture.title
+
+%ul.mca_form_destroy_explanation
+  %li Picture will be removed from any albums or events.
+  %li <em>Imported</em> picture files will remain in the file system.
+  %li <em>Uploaded</em> picture attachment(s) will be purged.
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, picture], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Picture', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

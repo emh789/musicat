@@ -1,0 +1,7 @@
+- unless (local_assigns[:optional] == true) && (value.to_s == '')
+  .mc_metadata_pair
+    %dt.mca_metadata_key= key
+    - if visibility.to_s != ''
+      %dd.mca_metadata_value= visibility_description(visibility)
+    - else
+      %dd.mca_metadata_nil= '(none)'

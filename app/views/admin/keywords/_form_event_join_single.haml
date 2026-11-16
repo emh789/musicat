@@ -1,0 +1,10 @@
+.mca_resource_pane_title
+  Add keyword to event
+
+- if selectable.does_have_events
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :events), local: true, class: :mca_form) do |f|
+    .mca_form_data
+      = f.fields_for :event_keywords, keyword.event_keywords.build do |ek|
+        = render 'admin/form_fields/collection_select', form: ek, attribute: :event_id, blank: true, collection: selectable.events, label: 'Event date/title', text_method: :datetime_and_title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit

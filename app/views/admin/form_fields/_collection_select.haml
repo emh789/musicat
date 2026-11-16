@@ -1,0 +1,14 @@
+%fieldset.mca_form_attribute
+  - if local_assigns[:label]
+    = form.label attribute, label, class: :mca_form_label
+  - else
+    = form.label attribute, class: :mca_form_label
+  - if local_assigns[:errors] && local_assigns[:errors].any?
+    %mark.mca_form_errors
+      - errors.each do |e|
+        .mca_form_error= e
+  = form.select attribute, form_SlimSelect_options(collection, text_method), { include_blank: false }, { class: :mca_form_input_select }
+  - if local_assigns[:aside]
+    %aside.mca_form_explanation= "#{aside}"
+  %script
+    = "new SlimSelect({ select: '\##{form.field_id(attribute)}', settings: { modal: 'on' } });".html_safe

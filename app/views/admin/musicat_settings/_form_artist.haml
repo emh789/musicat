@@ -1,0 +1,9 @@
+= form_with model: [:admin, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :artist), local: true, class: :mca_form, method: :patch do |f|
+  .mca_resource_pane_title
+    Artist settings
+  .mca_form_attributes
+    = render 'admin/form_fields/text_field', attribute: :artist_name, form: f
+    = render 'admin/form_fields/text_field_sized', attribute: :artist_content_copyright_year_earliest, form: f, size: 4
+    = render 'admin/form_fields/text_field_sized', attribute: :artist_content_copyright_year_latest, form: f, size: 4, aside: 'Leave blank to use year-of-the-moment.'
+  .mca_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

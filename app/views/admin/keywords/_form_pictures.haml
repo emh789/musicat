@@ -1,0 +1,29 @@
+.mca_resource_joins_buttons
+  = keyword_picture_admin_button_to_new_join_single(keyword)
+  = keyword_picture_admin_button_to_new_import(keyword)
+  = keyword_picture_admin_button_to_new_upload(keyword)
+
+.mca_resource_pane_title
+  = resource_joined_pictures_count_statement(keyword)
+
+- if keyword.does_have_pictures
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :pictures), local: true, class: :mca_form) do |f|
+    .mca_form_attributes
+      %table.mca_form_joins
+        %thead
+          %tr.mca_form_joins_headings
+            %th.mca_form_joins_heading{colspan: 2} picture
+            -# %th.mca_form_joins_heading
+            %th.mca_form_joins_heading= icon_remove
+        %tbody
+          = f.fields_for :picture_keywords, keyword.picture_keywords_sorted do |pk|
+            %tr.mca_form_joins_values
+              %td.mca_form_joins_picture_image
+                = render 'admin/form_fields/joins_picture_thumbnail', form: pk
+              %td.mca_form_joins_picture_attributes
+                = render 'admin/form_fields/joins_picture_title', form: pk
+              %td.mca_form_joins_picture_remove= render 'admin/form_fields/destroy_box', form: pk
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will also detach any pictures with the #{icon_remove} box checked"

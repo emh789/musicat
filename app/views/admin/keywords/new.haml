@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new keyword'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Keyword
+  = render '/admin/form_fields/errors', resource: @keyword
+
+.mca_keywords_new.mca_resource_pane
+  = render 'form', keyword: @keyword, selectable: @form_metadata.selectables

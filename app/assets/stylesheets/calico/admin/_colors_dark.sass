@@ -1,0 +1,79 @@
+@use 'sass:color'
+@use '../spec/border'
+@use '../spec/media_screen' as screen
+@use '../spec/palette_dark' as dark
+
+@media screen and (prefers-color-scheme: dark)
+
+  .musicat_admin
+    background-color: dark.$bg1
+    border-color: dark.$border
+    color: dark.$fg
+
+  .mca_header
+    background-color: dark.$admin-bg1
+
+  .mca_header_nav_button
+    background-color: dark.$button-bg
+
+  .mca_header_nav_select
+    background-color: dark.$button-bg
+
+  .mca_help_markup_demo_example_input, .mca_help_markup_demo_example_output
+    border-color: dark.$fg-mid
+
+  .mca_resource_joins_button
+    background-color: dark.$button-bg
+
+  .mca_resource_header, .mca_resource_header_with_thumbnail
+    background-color: dark.$admin-bg2
+
+  .mca_form_button_post, .mc_form_form_button_bulk_post
+    background-color: dark.$button-bg
+    &:hover
+      background-color: dark.$admin-bg2
+    &:active, &:focus
+      background-color: dark.$admin-bg2
+      color: dark.$highlight-fg
+
+  .mca_form_destroy
+    color: dark.$fg
+    background-color: dark.$button-bg
+    &:hover, &:active, &:focus
+      background-color: dark.$admin-warning-bg
+      color: dark.$admin-warning-fg
+
+  .mca_form_error
+    color: dark.$admin-error-fg
+
+  .mca_form_errors
+    background-color: inherit
+    color: dark.$admin-error-fg
+
+  .mca_form_input_checkbox_visible
+    background-color: dark.$bg1
+    border-color: dark.$border
+
+  .mca_form_input_checkbox_legacy:checked + .mca_form_input_checkbox_visible
+    background-color: dark.$checkbox-bg
+    background-image: url('font-awesome/check.svg')
+    background-size: cover
+
+  .mca_form_input_destroybox_visible
+    background-color: dark.$bg1
+    border-color: dark.$border
+
+  .mca_form_input_destroybox_legacy:checked + .mca_form_input_destroybox_visible
+    background-color: dark.$destroybox-bg
+    background-image: url('font-awesome/xmark.svg')
+    background-size: 100% 100%
+
+  .mca_form_joins_heading
+    background-color: dark.$bg-th
+
+  .mca_form_submit
+    background-color: dark.$button-bg
+    color: dark.$fg
+    border-color: dark.$border
+    &:hover, &:active, &:focus
+      background-color: dark.$admin-bg2

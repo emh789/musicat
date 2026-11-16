@@ -1,0 +1,13 @@
+= content_for :page_subtitle, 'video'
+= content_for :page_subtitle_detail, @video.title
+
+.mc_videos_show
+  .mc_videos_show_player
+    = render 'show_video_player', video: @video
+  .mc_videos_show_text
+    = render 'show_video_text_title', video: @video
+    = render 'show_video_text_description', video: @video
+    = render 'show_video_text_personnel', video: @video
+    = render 'show_video_text_copyright', video: @video
+  - if @video_neighbors
+    = render 'show_nav_neighbors', video_neighbors: @video_neighbors

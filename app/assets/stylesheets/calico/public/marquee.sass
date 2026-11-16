@@ -1,0 +1,13 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.mc_marquee
+  align-items: center
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  border-bottom-width: border.$width
+  font-family: font.$family-marquee
+  padding: margin.$quarter
+  text-align: center

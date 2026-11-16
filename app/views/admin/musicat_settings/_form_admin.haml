@@ -1,0 +1,15 @@
+= form_with model: [:admin, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :admin), local: true, class: :mca_form, method: :patch do |f|
+  .mca_resource_pane_title
+    Admin view settings
+  .mca_form_attributes
+    = render 'field_auto_keyword',                                                                    form: f, selectable: selectable.keywords
+    = render 'admin/form_fields/check_box', attribute: :admin_forms_retain_pane_for_neighbors,        form: f, aside: 'When editing a resource, the next/previous buttons will retain the current edit category pane.'
+    = render 'field_select_sorter',         attribute: :admin_forms_selectable_pictures_sort_method,  form: f, label: 'Admin forms – selectable picture collection', selectable: selectable.selectable_pictures_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_albums_sort_method,               form: f, label: 'Admin Index – Albums – sort by', selectable: selectable.albums_index_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_audio_sort_method,                form: f, label: 'Admin Index – Audio – sort by', selectable: selectable.audio_index_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_events_sort_method,               form: f, label: 'Admin Index – Events – sort by', selectable: selectable.events_index_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_isrc_sort_method,                 form: f, label: 'Admin Index – ISRC – sort by', selectable: selectable.isrc_index_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_pictures_sort_method,             form: f, label: 'Admin Index – Pictures – sort by', selectable: selectable.pictures_index_sorters
+    = render 'field_select_sorter',         attribute: :admin_index_videos_sort_method,               form: f, label: 'Admin Index – Videos – sort by', selectable: selectable.videos_index_sorters
+  .mca_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

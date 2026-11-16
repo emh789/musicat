@@ -1,0 +1,23 @@
+= content_for :page_subtitle, 'stream'
+= content_for :page_subtitle_detail, @stream.title
+
+.mc_admin_resource_header.resource_show
+  .mc_admin_resource_header_category
+    Stream
+  .mc_admin_resource_header_title
+    = @stream.title
+  .mc_admin_resource_header_buttons
+    -# stream_admin_button_to_previous(@stream_neighbors.previous)
+    = stream_admin_button_to_edit(@stream)
+    -# stream_admin_button_to_next(@stream_neighbors.next)
+
+.mc_admin_streams_show
+  .mc_admin_streams_show_title
+    = render 'admin/shared/metadata_pair', key: 'Title', value: @stream.title
+    = render 'admin/shared/metadata_pair', key: 'Visibility', visibility: @stream.visibility
+  .mc_admin_streams_show_attributes
+    = render 'admin/shared/metadata_pair', key: 'HTML element', value: @stream.html_element
+    = render 'admin/shared/metadata_pair', key: 'Description', text_props: @stream.description_props
+  .mc_admin_streams_show_etc
+    = render 'admin/shared/metadata_pair', key: 'URL', value: asset_url(public_stream_path(@stream.id_public))
+    = render 'admin/shared/metadata_pair', key: 'Last Updated', value: @stream.updated_at

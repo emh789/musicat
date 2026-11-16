@@ -1,0 +1,24 @@
+@use '../spec/font'
+
+.mca_index_joined_resources 
+
+.mca_index_joined_resource
+  display: inline
+  &::after
+    content: ' | '
+  &:last-child::after
+    content: ''
+
+.mca_index_joined_resource_data
+  display: inline
+  font-family: font.$family-data
+  &::after
+    content: ' • '
+  &:last-child::after
+    content: ''
+
+.mca_index_joined_resource_heading
+  display: inline
+  font-family: font.$family-application
+  font-weight: bold
+  white-space: nowrap

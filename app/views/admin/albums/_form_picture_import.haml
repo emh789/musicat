@@ -1,0 +1,9 @@
+.mca_resource_pane_title
+  Import picture
+  
+= form_with(model: [:admin, album], url: admin_album_picture_create_from_import_path(album), local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = f.fields_for :pictures, f.object.pictures.build do |ap|
+      = render 'admin/form_fields/text_field', attribute: :source_imported_file_path, form: ap, aside: "#{source_imported_dirname(trailing_separator: true)}"
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

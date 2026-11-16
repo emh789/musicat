@@ -1,0 +1,24 @@
+= content_for :page_subtitle, 'Log on'
+
+.mc_login_new
+  .mc_login_new_header
+    Administrator Access
+  .mc_login_new_prompt
+    = musicat_logo html_class: :mc_login_new_prompt_logo
+    .mc_login_new_prompt_form
+      = form_for(resource, as: resource_name, html: { class: [:mc_form, :mc_layout_narrow] }, url: session_path(resource_name)) do |f|
+        .mc_form_attr
+          = f.label :email, class: :mc_form_attr_label
+          = f.email_field :email, autocomplete: :off, autofocus: true, class: [:mc_form_attr_input_text_field]
+        .mc_form_attr
+          = f.label :password, class: :mc_form_attr_label
+          = f.password_field :password, autocomplete: :off, class: [:mc_form_attr_input_text_field]
+        -# - if devise_mapping.rememberable?
+        -#   .mc_form_data_attr
+        -#     = f.label :remember_me, class: :arl_form_data_attr_label
+        -#     = f.check_box :remember_me, class: :arl_form_data_attr_input_checkbox_inline
+        .mc_form_actions
+          = f.submit "Log in", class: [:mc_form_action_post]
+
+      -# .mc_form_links
+        -# render 'logins/shared/links'

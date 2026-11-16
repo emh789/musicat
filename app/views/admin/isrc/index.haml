@@ -1,0 +1,22 @@
+= content_for :page_subtitle, 'ISRC data'
+
+.mca_resource_header.resource_show
+  .mca_resource_header_category
+    Audio and Video
+  .mca_resource_header_title
+    ISRC data
+  .mca_resource_header_buttons
+    = isrc_admin_button_to_edit(filter: params[:filter])
+
+.mca_isrc_index
+  .mca_isrc_index_filter
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = isrc_admin_filter_select f, params, class: [:mc_active_filter, :mca_isrc_index_filter_select]
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  %table.mca_isrc_index_isrcs
+    - @resources.each do |resource|
+      %tr.mca_isrc_index_isrcs_item
+        %td.mca_isrc_index_isrcs_item_class= resource.class
+        %td.mca_isrc_index_isrcs_item_title= resource_isrcable_admin_link(resource)
+        %td.mca_isrc_index_isrcs_item_isrc= resource.isrc

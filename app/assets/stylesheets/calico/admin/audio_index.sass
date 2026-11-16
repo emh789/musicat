@@ -1,0 +1,55 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_audio_index
+  align-items: center
+  display: flex
+  flex-direction: column
+  margin: margin.$one
+
+.mca_audio_index_audio
+  column-gap: margin.$one
+  display: grid
+  font-family: font.$family-data
+  grid-template-areas: 'title title title' 'source source source' 'joins joins joins' 'date duration isrc' 'visibility visibility visibility'
+  grid-template-columns: 5rem 5rem auto
+  margin: margin.$one 0rem
+  max-width: 45rem
+  row-gap: margin.$eighth
+
+.mca_audio_index_audio_date
+  grid-area: date
+  font-size: 0.9rem
+
+.mca_audio_index_audio_duration
+  grid-area: duration
+  text-align: right
+  font-size: 0.9rem
+
+.mca_audio_index_audio_isrc
+  grid-area: isrc
+  margin-left: margin.$one
+  font-size: 0.9rem
+
+.mca_audio_index_audio_joins
+  grid-area: joins
+  font-size: 0.9rem
+
+.mca_audio_index_audio_source
+  grid-area: source
+
+.mca_audio_index_audio_title
+  grid-area: title
+  font-family: font.$family-title
+  font-weight: bold
+
+.mca_audio_index_audio_visibility
+  grid-area: visibility
+  font-weight: bold
+  font-size: 0.9rem
+
+.mca_audio_index_filter_select
+  @include button.select_aux

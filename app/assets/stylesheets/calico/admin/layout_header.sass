@@ -1,0 +1,120 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+
+.mca_header
+  border-bottom-width: border.$width
+  display: grid
+  font-family: font.$family-application
+  grid-template-areas: 'logo text' 'buttons buttons' 'messages messages'
+  grid-template-columns: min-content auto
+  padding: margin.$one
+
+.mca_header_logo
+  grid-area: logo
+
+.mca_header_logo_thumbnail
+  border-radius: border.$radius-narrow
+  border-width: border.$width
+  height: 6rem
+  margin-bottom: margin.$one
+  margin-right: margin.$one
+  width: 6rem
+
+.mca_header_text
+  display: flex
+  flex-direction: column
+  grid-area: text
+  justify-content: space-evenly
+  margin-bottom: margin.$one
+
+.mca_header_text_artist
+  margin: 0
+  padding: 0
+
+.mca_header_text_artist_name
+  border-radius: border.$radius
+  font-family: font.$family-artist
+  font-size: 2.5rem
+  font-weight: normal
+  line-height: 2.5rem
+  text-decoration: none
+
+.mca_header_text_title
+  font-size: 1.25rem
+  line-height: 1.25rem
+  margin: 0
+  padding: 0
+
+.mca_header_text_email
+  font-size: 1rem
+  margin: 0
+  padding: 0
+
+.mca_header_messages
+  grid-area: messages
+  padding: 0 margin.$quarter
+
+.mca_header_error
+  display: inline
+  text-indent: 0
+  margin: 0
+
+.mca_header_error:after
+  content: ', '
+
+.mca_header_error:last-child:after
+  content: ''
+
+.mca_header_error_list
+  display: inline
+  text-indent: 0
+  margin: 0
+
+.mca_header_errors
+  display: block
+
+.mca_header_nav
+  grid-area: buttons
+
+.mca_header_nav_button
+  border-radius: border.$radius
+  border-width: border.$width-wide
+  display: inline-block
+  height: 1.5em
+  margin-right: 0.5rem
+  min-width: 1.5em
+  padding: margin.$eighth margin.$quarter
+  user-select: none
+  &:last-child
+    margin-right: 0rem
+
+.mca_header_nav_select
+  border-radius: border.$radius
+  border-width: border.$width-wide
+  display: inline-block
+  font-family: font.$family-application
+  font-weight: bold
+  font-size: 1rem
+  height: 1.5em
+  margin-right: 0.5rem
+  min-width: 1.5em
+  padding: margin.$eighth margin.$quarter
+  vertical-align: top
+  &:last-child
+    margin-right: 0rem
+
+.mca_header_notice
+  display: inline
+
+.mca_header_updated
+  display: inline
+
+.mca_header_updated_list
+  display: block
+  margin-left: margin.$one
+
+.mca_header_updated_attribute
+  display: inline

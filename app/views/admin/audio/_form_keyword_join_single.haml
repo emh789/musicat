@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add a keyword
+
+- if selectable.does_have_keywords
+  = form_with model: [:admin, audio], url: admin_audio_path(audio, pane: :keywords), local: true, class: :mca_form do |f|
+    .mc_form_data
+      = f.fields_for :audio_keywords, audio.audio_keywords.build do |ak|
+        = render 'admin/form_fields/collection_select', form: ak, attribute: :keyword_id, blank: true, collection: selectable.keywords, label: 'Keyword', text_method: :title
+    .mc_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mc_form
+    .mc_form_null No keywords.

@@ -1,0 +1,8 @@
+.mca_resource_pane_title Remove icon attachment?
+
+= form_with(model: [:admin, musicat_settings], url: admin_musicat_settings_purge_icon_image_path(@musicat_settings, pane: :icon), local: true, class: :mca_form) do |f|
+  .mca_resource_pane_title
+    = @musicat_settings.icon_image.filename
+  .mca_form_warning This action can not be undone.
+  .mca_form_actions
+    = f.submit 'Purge Icon', class: :mca_form_destroy, data: { confirm: 'Are you sure?' }

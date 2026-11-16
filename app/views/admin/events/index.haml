@@ -1,0 +1,36 @@
+= content_for :page_subtitle, 'events'
+
+.mca_resource_header.resource_index
+  .mca_resource_header_category
+    Events Index
+  .mca_resource_header_nav
+    = event_admin_button_to_public
+
+.mca_events_index
+  .mca_events_index_filter
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = event_admin_filter_select f, params, class: [:mc_active_filter, :mca_events_index_filter_select]
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  .mca_events_index_events
+    - @events.each do |event|
+      .mca_events_index_event
+        .mca_events_index_event_datetime
+          = event_admin_link_datetime(event)
+        .mca_events_index_event_title
+          = event.title
+        .mca_events_index_event_image
+          = resource_coverpicture_tag(event, html_class: :arl_admin_events_index_event_image_thumbnail)
+        .mca_events_index_event_joins
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_audio', resource: event
+            = render 'admin/shared/index_joined_keywords', resource: event
+            = render 'admin/shared/index_joined_pictures', resource: event
+        .mca_events_index_event_city
+          = event.city
+        .mca_events_index_event_venue
+          = event.venue
+        .mca_events_index_event_venue_url
+          = event.venue_url
+        .mca_events_index_event_visibility
+          = visibility_description(event.visibility)

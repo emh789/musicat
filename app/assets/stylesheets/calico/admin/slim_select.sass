@@ -1,0 +1,77 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/palette_dark' as dark
+@use '../spec/palette_light' as light
+
+
+@media screen and (prefers-color-scheme: dark)
+  .ss-main
+    background-color: dark.$button-bg
+    border-color: dark.$border
+    border-style: solid
+    border-width: border.$width
+    svg
+      path
+        stroke: dark.$fg !important
+  .ss-content
+    background-color: dark.$bg1
+    border-color: dark.$border
+    color: dark.$fg
+    .ss-list
+      color: dark.$fg
+      .ss-option[role='option']
+        color: dark.$fg
+        &:hover:not(.ss-disabled)
+          background-color: dark.$bg3
+          color: dark.$fg
+      .ss-option.ss-selected
+        color: dark.$highlight-fg !important
+        background-color: dark.$highlight-bg !important
+        font-weight: bold
+    .ss-modal-close
+      background-color: dark.$bg3 !important
+    .ss-search
+      border-bottom-color: dark.$border-fg !important
+      border-bottom-style: solid
+      border-bottom-width: 1px
+      input[type='search']
+        background-color: dark.$bg1 !important
+  .ss-modal-title
+    font-family: font.$family-application
+
+
+@media screen and (prefers-color-scheme: light)
+  .ss-main
+    background-color: light.$button-bg
+    border-color: light.$border
+    border-style: solid
+    border-width: border.$width
+    svg
+      path
+        stroke: light.$fg !important
+  .ss-content
+    background-color: light.$bg1
+    border-color: light.$border
+    color: light.$fg
+    .ss-list
+      color: light.$fg
+      .ss-option[role='option']
+        color: light.$fg
+        &:hover:not(.ss-disabled)
+          background-color: light.$bg3
+          color: light.$fg
+      .ss-option.ss-selected
+        color: light.$highlight-fg !important
+        background-color: light.$highlight-bg !important
+        font-weight: bold
+    .ss-modal-close
+      background-color: light.$bg3 !important
+    .ss-search
+      border-bottom-color: light.$border-fg !important
+      border-bottom-style: solid
+      border-bottom-width: 1px
+      input[type='search']
+        background-color: light.$bg1 !important
+  .ss-modal-title
+    font-family: font.$family-application

@@ -1,0 +1,34 @@
+= content_for :page_subtitle, 'albums'
+
+.mca_resource_header.resource_index
+  .mca_resource_header_category
+    Albums Index
+  .mca_resource_header_nav
+    = album_admin_button_to_public
+
+.mca_albums_index
+  .mca_albums_index_filter
+    = form_with model: @musicat_settings, url: admin_musicat_settings_update_and_return_path, local: true do |f|
+      = album_admin_filter_select f, params, class: [:mc_active_filter, :mca_albums_index_filter_select]
+      = f.submit icon_pin, class: :mca_form_aux_submit
+
+  .mca_albums_index_albums
+    - @albums.each do |album|
+      .mca_albums_index_album
+        .mca_albums_index_album_title
+          = album_admin_link_title(album)
+        .mca_albums_index_album_image
+          = resource_coverpicture_tag(album, html_class: :mca_albums_index_album_image_thumbnail)
+        .mca_albums_index_album_artist
+          = album.album_artist
+        .mca_albums_index_album_joins
+          %dl.mca_index_joined_resources
+            = render 'admin/shared/index_joined_audio', resource: album
+            = render 'admin/shared/index_joined_keywords', resource: album
+            = render 'admin/shared/index_joined_pictures', resource: album
+        .mca_albums_index_album_date
+          = album.date_released
+        .mca_albums_index_album_duration
+          = album.duration
+        .mca_albums_index_album_visibility
+          = visibility_description(album.visibility)

@@ -1,0 +1,22 @@
+-# `include_blank` has been set to `false` because
+-# because `picture_options` already includes an option for `nil`
+-# through its declaration in the `pictures_controller`
+
+
+- if local_assigns[:attribute]
+  .mca_form_attribute
+    = form.label attribute, 'Picture title', class: :mca_form_label
+    = form.select attribute, form_SlimSelect_picture_options(selectable.pictures), { include_blank: false }, { class: [:mca_form_input_select_picture] }
+    .mca_form_thumbnail
+      = picture_nil_image_tag html_class: :mca_form_thumbnail_image
+    %script
+      = "new SlimSelect({ select: '\##{form.field_id(attribute)}', settings: { modal: 'on' } });".html_safe
+
+- else
+  .mca_form_attribute
+    = form.label :picture_id, 'Picture title', class: :mca_form_label
+    = form.select :picture_id, form_SlimSelect_picture_options(selectable.pictures), { include_blank: false }, { class: [:mca_form_input_select_picture] }
+    .mca_form_thumbnail
+      = picture_nil_image_tag html_class: :mca_form_thumbnail_image
+    %script
+      = "new SlimSelect({ select: '\##{form.field_id(:picture_id)}', settings: { modal: 'on' } });".html_safe

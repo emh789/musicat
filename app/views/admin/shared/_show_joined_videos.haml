@@ -1,0 +1,24 @@
+-# .mca_resource_show_joined_videos
+-#   .mca_resource_show_joined_heading.mc_metadata_key
+-#     = resource_joined_videos_count_label(resource)
+-#   - if resource.does_have_videos
+-#     %table.mca_resource_show_joined_items.mc_metadata_table_values
+-#       - resource.joined_videos_sorted.each do |joined_video|
+-#         %tr
+-#           %td.mc_metadata_table_value
+-#             = video_admin_link_title(joined_video.video)
+-#           %td.mc_metadata_table_value
+-#             = visibility_abbreviation(joined_video.video.visibility)
+-#
+
+%table.mca_show_joined_videos
+  %caption.mca_show_joined_videos_count
+    = resource_joined_videos_count_label(resource)
+  - if resource.does_have_videos
+    %tbody
+      - resource.joined_videos_sorted.each do |joined_video|
+        %tr
+          %td.mca_show_joined_video_title
+            = video_admin_link_title(joined_video.video)
+          %td.mca_show_joined_video_visibility
+            = visibility_abbreviation(joined_video.video.visibility)

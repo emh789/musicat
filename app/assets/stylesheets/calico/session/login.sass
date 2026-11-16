@@ -1,0 +1,100 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mc_login_new
+  font-family: font.$family-application
+
+.mc_login_new_header
+  font-size: 1.5rem
+  font-weight: bold
+  margin-bottom: margin.$one
+
+.mc_login_new_prompt
+  justify-self: center
+  margin-top: margin.$half
+
+.mc_login_new_prompt_logo
+  height: 9rem
+  width: 9rem
+
+.mc_form_attr
+  display: grid
+  grid-template-areas: 'label' 'errors' 'input'
+  margin: margin.$half margin.$eighth
+
+.mc_form_attr_label
+  align-self: left
+  font-family: font.$family-description
+  font-weight: bold
+  grid-area: label
+  margin-bottom: margin.$eighth
+
+.mc_form_attr_input_text_field
+  grid-area: input
+  border-width: border.$width
+  font-size: 0.9em
+  font-family: font.$family-data
+  padding: margin.$eighth margin.$quarter
+  min-width: 15rem
+  max-width: 20rem
+
+.mc_form_actions
+  margin-top: margin.$one
+
+.mc_form_action_post
+  border-width: border.$width-wide
+  border-radius: border.$radius-wide
+  cursor: pointer
+  font-family: font.$family-application
+  font-size: 1rem
+  font-weight: bold
+  padding: margin.$half margin.$one
+
+
+@media #{screen.$px-480}
+  .mc_login_new
+    margin: margin.$one
+
+  .mc_login_new_header
+    text-align: center
+
+  .mc_login_new_prompt
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+
+  .mc_login_new_prompt_form
+    margin-top: margin.$one
+    margin-bottom: 0rem
+
+  .mc_login_new_prompt_logo
+    margin-right: margin.$quarter
+
+
+@media #{screen.$px481-767}
+  .mc_login_new_header
+    text-align: center
+
+  .mc_login_new_prompt
+    align-items: center
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+
+
+@media #{screen.$px768-}
+  .mc_login_new_header
+    text-align: left
+
+  .mc_login_new_prompt
+    align-items: flex-start
+    display: flex
+    flex-direction: row
+    gap: margin.$one
+    justify-content: center
+
+  .mc_login_new_prompt_form
+    max-width: 30rem

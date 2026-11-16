@@ -1,0 +1,15 @@
+%table.mca_show_joined_pictures
+  %caption.mca_show_joined_pictures_count
+    = resource_joined_pictures_count_label(resource)
+  - if resource.does_have_pictures
+    %tbody
+      - resource.joined_pictures_sorted.each do |joined_picture|
+        %tr.mca_show_joined_picture
+          %td.mca_show_joined_picture_title
+            = picture_admin_link_title(joined_picture.picture)
+          %td.mca_show_joined_picture_order
+            = "#{joined_picture.order}." if joined_picture.does_have_order
+          %td.mca_show_joined_picture_cover
+            = "cover" if joined_picture.is_coverpicture
+          %td.mca_show_joined_picture_visibility
+            = visibility_abbreviation(joined_picture.picture.visibility)

@@ -1,0 +1,9 @@
+- unless (local_assigns[:optional] == true) && (value.to_s == '')
+  .mca_metadata_pair
+    %dt.mca_metadata_key= key
+    - if datetime_props[:value] != ''
+      %dd.mca_metadata_value
+        .mca_metadata_value_primary= datetime_props[:value]
+        .mca_metadata_value_secondary= "from #{datetime_props[:method]}"
+    - else
+      %dd.mca_metadata_value_parser_nil= '(none)'

@@ -1,0 +1,46 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_keywords_index
+  margin: margin.$one
+  max-width: 40rem
+
+.mca_keywords_index_keyword
+  display: grid
+  grid-template-areas: 'title' 'resources' 'can_select'
+  row-gap: margin.$quarter
+  margin: margin.$one 0rem
+
+.mca_keywords_index_keyword_resources
+  grid-area: resources
+  font-family: font.$family-data
+  font-size: 0.9rem
+
+.mca_keywords_index_keyword_title
+  grid-area: title
+  font-family: font.$family-title
+  font-weight: bold
+
+.mca_keywords_index_keyword_can_select
+  grid-area: can_select
+  font-family: font.$family-data
+
+.mca_keywords_index_keyword_can_select_title
+  display: inline
+  font-family: font.$family-application
+  font-size: 0.9rem
+  font-weight: bold
+
+.mca_keywords_index_keyword_can_select_resource
+  display: inline
+  font-family: font.$family-data
+  font-size: 0.9rem
+  &::after
+    content: ', '
+
+  &:last-child::after
+    content: ''
+  

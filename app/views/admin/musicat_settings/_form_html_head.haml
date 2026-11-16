@@ -1,0 +1,7 @@
+= form_with(model: [:html_head, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :html_head), local: true, class: :mca_form, method: :patch) do |f|
+  .mca_resource_pane_title
+    HTML Header settings
+  .mc_form_data
+    = render 'admin/form_fields/check_box', attribute: :html_head_can_include_meta_description, form: f, aside: 'Brief description tag for search engines and app feeds.'
+  .mc_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

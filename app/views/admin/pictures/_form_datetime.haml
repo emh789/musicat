@@ -1,0 +1,27 @@
+.mca_resource_pane_title
+  Picture date and time information
+
+.mca_form_data
+  .mca_form_attribute
+    %label.mca_form_label Effective date/time
+    %div.mca_form_value
+      .mc_metadata_value_fragment_primary= picture.datetime_effective_value
+      .mc_metadata_value_fragment_secondary= "from #{picture.datetime_effective_method}"
+
+= form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :datetime), local: true, class: :mca_form) do |f|
+  .mca_form_data
+    = render 'admin/form_fields/datetimezone_field',  form: f, attribute: :datetime_from_manual_entry, zone: :datetime_from_manual_entry_zone, heading: 'Date and time from manual entry', selectable: selectable, step: 1
+  .mca_form_actions
+    = f.submit class: :mca_form_submit
+
+.mca_form_data
+  .mca_form_attribute
+    %label.mca_form_label Date/time from image exif
+    %div.mca_form_value= picture.datetime_from_exif
+  .mca_form_attribute
+    %label.mca_form_label Date/time from filesystem
+    %div.mca_form_value= picture.datetime_from_file
+
+-#  .mc_form_actions
+-#  = form_with(model: [:admin, picture], url: admin_picture_refresh_exif_path(picture, pane: :datetime), local: true, method: :patch, class: :mca_form) do |f|
+-#    = f.submit 'Refresh date/time', class: :mca_form_submit

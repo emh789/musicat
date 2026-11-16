@@ -1,0 +1,11 @@
+= html_head_subtitle_set 'videos'
+
+.mc_videos_index
+  %table.mc_videos_index_videos
+    - @videos.each do |video|
+      %tr.mc_videos_index_video.mc_active_link_container{data: {url: public_video_path(video.id_public)}}
+        %td.mc_videos_index_video_picture
+          = render 'index_video_picture_img', video: video
+        %td.mc_videos_index_video_text
+          = render 'index_video_text_title', video: video
+          = render 'index_video_text_year', video: video

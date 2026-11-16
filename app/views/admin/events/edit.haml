@@ -1,0 +1,20 @@
+= content_for :page_subtitle, 'editing event'
+= content_for :page_subtitle_detail, @event.date_and_venue
+
+.mca_resource_header.resource_edit
+  .mca_resource_header_category
+    Editing Event
+  .mca_resource_header_title
+    = sanitize "#{@event.datetime_friendly}<br>#{@event.title_markup_text}"
+  .mca_resource_header_buttons
+    = event_admin_button_to_edit_previous(@event_neighbors.previous, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+    = event_admin_button_to_done_editing(@event)
+    = event_admin_button_to_edit_next(@event_neighbors.next, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+  = render '/admin/form_fields/errors', resource: @event
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = event_admin_edit_nav_button(event: @event, category: category, current_pane: @form_metadata.current_pane)
+
+.mca_event_edit.mca_resource_pane
+  = render @form_metadata.partial_name, event: @event, selectable: @form_metadata.selectables

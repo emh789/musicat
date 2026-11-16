@@ -1,0 +1,17 @@
+= content_for :page_subtitle, 'editing administrator'
+= content_for :page_subtitle_detail, resource.name
+
+.mca_resource_header
+  .mca_resource_header_category= "Editing Administrator – #{resource.name}"
+  = render 'administrators/shared/error_messages'
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.nav_categories.each do |category|
+    = administrator_registration_edit_nav_button(category: category, current_pane: @form_metadata.tab_name)
+
+.mca_administrators_registrations_edit.mca_resource_pane
+  - if (devise_mapping.confirmable? && resource.pending_reconfirmation?)
+    %aside.mca_form_explanation
+      Currently waiting confirmation for:
+      = resource.unconfirmed_email
+  = render @form_metadata.partial_name

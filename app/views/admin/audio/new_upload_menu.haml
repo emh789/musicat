@@ -1,0 +1,13 @@
+= content_for :page_subtitle, 'upload audio'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    Upload Audio
+
+.mca_audio_new_upload_menu
+  .mca_audio_new_upload_menu_option
+    = link_to "upload single", admin_audio_new_upload_single_path, class: :mca_form_submit
+  .mca_audio_new_upload_menu_option
+    = link_to "upload to album", admin_audio_new_upload_to_album_path, class: :mca_form_submit
+  .mca_audio_new_upload_menu_option
+    = link_to "upload to event", admin_audio_new_upload_to_event_path, class: :mca_form_submit

@@ -1,0 +1,23 @@
+= content_for :page_subtitle, 'editing picture'
+= content_for :page_subtitle_detail, @picture.title_for_display
+
+.mca_resource_header.resource_edit_with_thumbnail
+  .mca_resource_header_category
+    Editing Picture
+  .mca_resource_header_title
+    = parser_div(@picture.title_props_for_display)
+  .mca_resource_header_thumbnail
+    = picture_preferred_tag(@picture, html_class: :mca_resource_header_thumbnail_image)
+  .mca_resource_header_buttons
+    = picture_admin_button_to_edit_previous(@picture_neighbors.previous, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+    = picture_admin_button_to_done_editing(@picture)
+    = picture_admin_button_to_public(@picture)
+    = picture_admin_button_to_edit_next(@picture_neighbors.next, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+  = render '/admin/form_fields/errors', resource: @picture
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = picture_admin_edit_nav_button(picture: @picture, category: category, current_pane: @form_metadata.current_pane)
+
+.mca_pictures_edit.mca_resource_pane
+  = render @form_metadata.partial_name, picture: @picture, selectable: @form_metadata.selectables

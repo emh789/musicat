@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Picture details
+
+= form_with(model: [:admin, picture], local: true, class: :mca_form) do |f|
+  .mca_form_data
+    = render 'admin/form_fields/parseable_field', attribute: :title,                  form: f, selectable: selectable
+    = render 'admin/form_fields/visibility',      attribute: :visibility,             form: f
+    = render 'admin/form_fields/auto_keyword',    attribute: :picture_keywords,       form: f
+    = render 'admin/form_fields/spacer'
+    = render 'admin/form_fields/parseable_area',  attribute: :credits,                form: f, selectable: selectable
+    = render 'admin/form_fields/parseable_area',  attribute: :description,            form: f, selectable: selectable
+    = render 'admin/form_fields/check_box',       attribute: :show_can_display_title, form: f
+  .mca_form_actions
+    = f.submit class: :mca_form_submit

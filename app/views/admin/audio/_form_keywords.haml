@@ -1,0 +1,21 @@
+.mca_resource_joins_buttons
+  = audio_keyword_admin_button_to_new_join_single(audio)
+
+.mca_resource_pane_title
+  = resource_joined_keywords_count_statement(audio)
+
+- if audio.does_have_keywords
+  = form_with(model: [:admin, audio], url: admin_audio_path(audio, pane: :keywords), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading keyword
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :audio_keywords, audio.audio_keywords_sorted do |ak|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= keyword_admin_link_title(ak.object.keyword)
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: ak
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation= "will remove any keywords with '#{icon_destroy}' box checked"

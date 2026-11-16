@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new link'
+
+.mc_admin_resource_header.resource_new
+  .mc_admin_resource_header_category
+    New Link
+  = render '/admin/form_fields/errors', resource: @link
+
+.mc_admin_links_new
+  = render 'form', link: @link, selectable: @form_metadata.selectables

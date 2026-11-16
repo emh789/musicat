@@ -1,0 +1,15 @@
+.mca_resource_pane_title
+  Add audio to album
+
+- if selectable.does_have_albums
+  = form_with(model: [:admin, audio], url: admin_audio_path(audio, pane: :albums), local: true, class: :mca_form) do |f|
+    .mca_form_attributes
+      = f.fields_for :album_audio, audio.album_audio.build do |aa|
+        = render 'admin/form_fields/collection_select', form: aa, attribute: :album_id, blank: true, collection: selectable.albums, label: 'Album title', text_method: :title
+        = render 'admin/form_fields/text_field_sized', form: aa, attribute: :album_order, autocomplete: false, label: 'Order', size: 4
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No albums.

@@ -1,0 +1,71 @@
+@use '../spec/border'
+@use '../spec/button'
+@use '../spec/font'
+@use '../spec/margin'
+@use '../spec/media_screen' as screen
+
+.mca_pictures_index
+  align-items: center
+  display: flex
+  flex-direction: column
+  margin: margin.$one
+
+.mca_pictures_index_filter_select
+  @include button.select_aux
+
+.mca_pictures_index_pictures
+  margin: margin.$one
+  max-width: 45rem
+
+.mca_pictures_index_picture
+  align-content: start
+  align-items: start
+  column-gap: margin.$one
+  display: grid
+  grid-template-areas: 'image title' 'image filepath' 'image resources' 'image datetime' 'image visibility' 'image .'
+  grid-template-columns: 7rem auto
+  margin: margin.$one 0
+  row-gap: margin.$eighth
+
+.mca_pictures_index_picture_datetime
+  grid-area: datetime
+  font-family: font.$family-data
+  font-size: 0.9rem
+
+.mca_pictures_index_picture_filepath
+  grid-area: filepath
+  font-family: font.$family-data
+
+.mca_pictures_index_picture_image
+  grid-area: image
+  height: 7rem
+
+.mca_pictures_index_picture_image_thumbnail
+  border-radius: border.$radius-narrow
+  margin-left: auto
+  margin-right: auto
+  max-height: 7rem
+  max-width: 7rem
+
+.mca_pictures_index_picture_image_missing
+  height: 7rem
+  width: 7rem
+
+.mca_pictures_index_picture_resources
+  grid-area: resources
+  font-family: font.$family-data
+  font-size: 0.9rem
+
+.mca_pictures_index_picture_title
+  grid-area: title
+  font-family: font.$family-title
+  font-weight: bold
+
+.mca_pictures_index_picture_url
+  font-family: font.$family-data
+
+.mca_pictures_index_picture_visibility
+  grid-area: visibility
+  font-family: font.$family-data
+  font-size: 0.9rem
+  font-weight: bold

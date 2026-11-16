@@ -1,0 +1,21 @@
+= form_with(model: [:admin, musicat_settings], url: admin_musicat_settings_path(musicat_settings, pane: :public), local: true, class: :mca_form, method: :patch) do |f|
+  .mca_resource_pane_title Public view settings
+
+  .mca_form_data
+    = render 'field_homepage_target', form: f, label: 'Public Homepage Target', targets: selectable.public_homepage_targets
+    = render 'field_select_sorter', attribute: :public_index_albums_sort_method,   form: f, label: 'Public Index – Albums – sort by', selectable: selectable.albums_index_sorters
+    = render 'field_select_sorter', attribute: :public_index_audio_sort_method,    form: f, label: 'Public Index – Audio – sort by', selectable: selectable.audio_index_sorters
+    = render 'field_select_sorter', attribute: :public_index_events_sort_method,   form: f, label: 'Public Index – Events – sort by', selectable: selectable.events_index_sorters
+    = render 'field_select_sorter', attribute: :public_index_pictures_sort_method, form: f, label: 'Public Index – Pictures – sort by', selectable: selectable.pictures_index_sorters, aside: form_message_picture_datetime_cascade
+    = render 'field_select_sorter', attribute: :public_index_videos_sort_method,   form: f, label: 'Public Index – Videos – sort by', selectable: selectable.videos_index_sorters
+    = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_albums, form: f
+    -# = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_audio, form: f
+    = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_events, form: f
+    = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_info, form: f
+    = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_pictures, form: f
+    -# TODO: Obsolete
+    -# = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_stream, form: f
+    = render 'admin/form_fields/check_box', attribute: :public_nav_can_include_videos, form: f
+
+  .mca_form_actions
+    = f.submit 'Update MusiCat settings', class: :mca_form_submit

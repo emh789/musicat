@@ -1,0 +1,11 @@
+.mca_form_attribute
+  = form.label (local_assigns[:label] ? label : attribute), class: :mca_form_label
+
+  - if form.object.does_not_have_source_uploaded(attribute)
+    = form.file_field attribute, autocomplete: :off, direct_upload: true, class: :mca_form_input_file_upload
+
+  - if form.object.does_have_source_uploaded(attribute)
+    .mca_form_attachment
+      .mca_form_attachment_filename= form.object.method(attribute).call.blob.filename
+      - if local_assigns[:purge_path]
+        .mca_form_attachment_purge_link= link_to 'purge attachment', purge_path

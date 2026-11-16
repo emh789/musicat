@@ -1,0 +1,22 @@
+.mca_resource_joins_buttons
+  = keyword_album_admin_button_to_new_join_single(keyword)
+
+.mca_resource_pane_title
+  = resource_joined_albums_count_statement(keyword)
+
+- if keyword.does_have_albums
+  = form_with(model: [:admin, keyword], url: admin_keyword_path(keyword, pane: :albums), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading album title
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :album_keywords, keyword.album_keywords_sorted do |ak|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= album_admin_link_title(ak.object.album)
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: ak
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        = "will detach any albums with the #{icon_remove} box checked."

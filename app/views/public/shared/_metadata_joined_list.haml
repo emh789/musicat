@@ -1,0 +1,4 @@
+.mc_metadata_pair
+  %dt.mc_metadata_key= "#{key} - #{list.count}"
+  - list.each do |value|
+    %dd.mc_metadata_value= content_tag(:a, value[:title], href: value[:url])

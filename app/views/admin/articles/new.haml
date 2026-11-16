@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new article'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Article
+  = render '/admin/form_fields/errors', resource: @article
+
+.mca_articles_new.mca_resource_pane
+  = render 'form', article: @article, selectable: @form_metadata.selectables

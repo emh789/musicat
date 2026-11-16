@@ -1,0 +1,22 @@
+.mca_resource_joins_buttons
+  = picture_event_admin_button_to_new_join_single(picture)
+
+.mca_resource_pane_title
+  = resource_joined_events_count_statement(picture)
+
+- if picture.does_have_events
+  = form_with(model: [:admin, picture], url: admin_picture_path(picture, pane: :events), local: true, class: :mca_form) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading event
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :event_pictures, picture.event_pictures_sorted do |ep|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= event_admin_link_date_and_venue(ep.object.event)
+            %td.mca_form_joins_value= ep.check_box :_destroy
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+      %aside.mca_form_explanation
+        will also unjoin any events with 'remove' box checked

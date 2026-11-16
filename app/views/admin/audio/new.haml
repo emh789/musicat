@@ -1,0 +1,8 @@
+= content_for :page_subtitle, 'new audio'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Audio
+
+.mca_audio_new.mca_resource_pane
+  = render 'form', audio: @audio, selectable: @form_metadata.selectables

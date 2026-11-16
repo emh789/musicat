@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add album
+
+- if selectable.does_have_albums
+  = form_with model: [:admin, picture], url: admin_picture_path(picture, pane: :albums), local: true, class: :mca_form do |f|
+    .mca_form_attributes
+      = f.fields_for :album_picture, picture.album_pictures.build do |ap|
+        = render 'admin/form_fields/collection_select', form: ap, attribute: :album_id, blank: true, collection: selectable.albums, label: 'Album title', text_method: :title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No albums.

@@ -1,0 +1,12 @@
+= content_for :page_subtitle, 'MusiCat settings'
+
+.mca_resource_header
+  .mca_resource_header_category.resource_edit_private
+    MusiCat application settings
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = musicat_settings_admin_edit_nav_button(musicat_settings: @musicat_settings, category: category, current_pane: @form_metadata.current_pane)
+
+.mca_musicat_settings_edit.mca_resource_pane
+  = render @form_metadata.partial_name, musicat_settings: @musicat_settings, selectable: @form_metadata.selectables

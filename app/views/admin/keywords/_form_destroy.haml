@@ -1,0 +1,12 @@
+.mca_resource_pane_title
+  Destroy keyword?
+  .mca_form_data_label_destroy= sanitize("<i>" + keyword.title + "</i>")
+
+%ul.mca_form_destroy_explanation
+  %li Attached resources will remain in database and filesystem.
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, keyword], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Keyword', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

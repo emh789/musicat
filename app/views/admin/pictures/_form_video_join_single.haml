@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add video
+
+- if selectable.does_have_videos
+  = form_with model: [:admin, picture], url: admin_picture_path(picture, pane: :videos), local: true, class: :mca_form do |f|
+    .mca_form_data
+      = f.fields_for :video_pictures, picture.video_pictures.build do |vp|
+        = render 'admin/form_fields/collection_select', form: vp, attribute: :video_id, blank: true, collection: selectable.videos, label: 'Video title', text_method: :title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No videos.

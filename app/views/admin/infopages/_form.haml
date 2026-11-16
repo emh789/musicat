@@ -1,0 +1,33 @@
+.mca_resource_pane_title
+  InfoPage
+
+= form_with(model: [:admin, infopage], local: true, class: :mca_form) do |f|
+  .mca_form_attributes
+    = render 'admin/form_fields/text_field',       attribute: :title,       form: f
+    = render 'admin/form_fields/visibility',       attribute: :visibility,  form: f
+    = render 'admin/form_fields/text_field_sized', attribute: :index_order, form: f, size: 4
+  .mca_form_actions
+    = f.submit class: :mca_form_submit
+
+- if infopage.does_have_items
+  = render 'admin/form_fields/spacer'
+  = form_with(model: [:admin, infopage], url: admin_infopage_path(infopage, pane: :infopage), local: true, class: :mca_form, method: :patch) do |f|
+    %table.mca_form_joins
+      %thead
+        %tr.mca_form_joins_headings
+          %th.mca_form_joins_heading class
+          %th.mca_form_joins_heading title
+          %th.mca_form_joins_heading group
+          %th.mca_form_joins_heading order
+          %th.mca_form_joins_heading= icon_remove
+      %tbody
+        = f.fields_for :infopage_items, infopage.infopage_items_sorted do |i|
+          %tr.mca_form_joins_values
+            %td.mca_form_joins_value= i.object.type_of
+            %td.mca_form_joins_value= infopageable_admin_link_titleish(i.object)
+            %td.mca_form_joins_value= i.select :infopage_group, @form_metadata.selectables.item_groups, { selected: i.object.infopage_group }, class: :mca_form_input_select
+            %td.mca_form_joins_value= i.text_field :infopage_group_order, size: 4, class: :mca_form_input_number_field
+            %td.mca_form_joins_value= render 'admin/form_fields/destroy_box', form: i
+    .mca_form_actions
+      = f.submit 'Update Items', class: :mca_form_submit
+      %aside.mca_form_explanation= "will also detatch any items with '#{icon_destroy}' box checked"

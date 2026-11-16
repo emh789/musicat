@@ -1,0 +1,13 @@
+%fieldset.mca_form_attribute
+  %label.mca_form_label ISRC
+
+  - if form.object.errors_include_isrc
+    %mark.mca_form_errors
+      - form.object.errors_isrc_messages.each do |e|
+        .mca_form_error= e
+
+  .mca_form_multi
+    = form.text_field :isrc_country_code, autocomplete: :off, size: 3, maxlength: 2, class: [:mca_form_input_text_field, :mca_form_margin_right]
+    = form.text_field :isrc_registrant_code, autocomplete: :off, size: 4, maxlength: 3, class: [:mca_form_input_text_field, :mca_form_margin_right]
+    = form.text_field :isrc_year_of_reference, autocomplete: :off, size: 3, maxlength: 2, class: [:mca_form_input_text_field, :mca_form_margin_right]
+    = form.text_field :isrc_designation_code, autocomplete: :off, size: 6, maxlength: 5, class: [:mca_form_input_text_field, :mca_form_margin_right]

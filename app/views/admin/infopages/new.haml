@@ -1,0 +1,9 @@
+= content_for :page_subtitle, 'new infopage'
+
+.mca_resource_header.resource_new
+  .mca_resource_header_category
+    New Infopage
+  = render '/admin/form_fields/errors', resource: @infopage
+
+.mca_infopages_new.mca_resource_pane
+  = render 'form', infopage: @infopage, selectable: @form_metadata.selectables

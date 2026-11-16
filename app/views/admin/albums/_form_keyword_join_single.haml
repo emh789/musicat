@@ -1,0 +1,14 @@
+.mca_resource_pane_title
+  Add a keyword
+  
+- if selectable.does_have_keywords
+  = form_with(model: [:admin, album], url: admin_album_path(album, pane: :keywords), local: true, class: :mca_form, method: :patch) do |f|
+    .mca_form_attributes
+      = f.fields_for :album_keywords, album.album_keywords.build do |ak|
+        = render 'admin/form_fields/collection_select', form: ak, attribute: :keyword_id, blank: true, collection: selectable.keywords, text_method: :title
+    .mca_form_actions
+      = f.submit class: :mca_form_submit
+
+- else
+  .mca_form
+    .mca_form_null No keywords.

@@ -1,0 +1,15 @@
+= html_head_subtitle_set "#{@album} pictures"
+
+.mc_pictures_index
+  =# render 'shared/selector_list', selectors_hash: @selectors, all_link: true, nil_link: false
+
+  = render 'album_pictures_index_heading', album: @album
+
+  .mc_pictures_index_pictures
+    - @pictures_page_hash[:pictures].each do |picture|
+      %figure.mc_pictures_index_picture.mc_active_link_container{data: {url: public_picture_path(picture.id_public)}}
+        -# TODO: Obsolete? Maybe not.
+        = picture_thumbnail_link(picture, html_class: :mc_pictures_index_picture_thumbnail)
+
+  - if @pictures_page_hash[:page_nav_data][:current] != :all
+    = render 'shared/nav_page', controller: 'pictures', page: @pictures_page_hash[:page_nav_data]

@@ -1,0 +1,27 @@
+@use '../spec/border'
+@use '../spec/font'
+@use '../spec/margin'
+
+.mc_footer
+  align-items: center
+  border-top-width: border.$width
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  padding: margin.$half
+  text-align: center
+
+.mc_footer_app
+  font-family: font.$family-application
+  font-size: 0.7rem
+  margin: margin.$half 0rem
+
+.mc_footer_app_tech
+  font-size: 0.625rem
+
+.mc_footer_artist
+  font-family: font.$family-application
+  margin: margin.$half 0rem
+
+.mc_footer_artist_copyright
+  font-size: 0.75rem

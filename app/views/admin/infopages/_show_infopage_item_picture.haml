@@ -1,0 +1,9 @@
+.mca_infopage_show_item
+  .mca_infopage_show_item_order
+    = "#{order}."
+  .mca_infopage_show_item_class
+    Picture
+  .mca_infopage_show_item_title
+    = picture_admin_link_title(picture)
+  .mca_infopage_show_item_content
+    = picture_preferred_tag(picture, html_class: :mca_infopage_show_item_picture_img)

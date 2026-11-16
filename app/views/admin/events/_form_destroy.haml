@@ -1,0 +1,13 @@
+.mca_resource_pane_title
+  Destroy event?
+  .mca_form_data_label_destroy= "\"#{event.title}\""
+  .mca_form_data_label_destroy= event.datetime
+
+%ul.mca_form_destroy_explanation
+  %li Attached audio, pictures, and videos will remain in database and filesystem.
+
+.mca_form_warning This action can not be undone.
+
+= form_with(model: [:admin, event], method: :delete, local: true, class: :mca_form) do |f|
+  .mca_form_actions
+    = f.submit 'Destroy Event', data: { confirm: 'Are you sure?' },  class: :mca_form_destroy

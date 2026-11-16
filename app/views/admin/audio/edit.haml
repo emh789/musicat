@@ -1,0 +1,20 @@
+= content_for :page_subtitle, 'editing audio'
+= content_for :page_subtitle_detail, @audio.title_for_display
+
+.mca_resource_header.resource_edit
+  .mca_resource_header_category
+    Editing Audio
+  .mca_resource_header_title
+    %span= @audio.title
+  .mca_resource_header_nav
+    = audio_admin_button_to_edit_previous(@audio_neighbors.previous, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+    = audio_admin_button_to_done_editing(@audio)
+    = audio_admin_button_to_public(@audio)
+    = audio_admin_button_to_edit_next(@audio_neighbors.next, musicat_settings: @musicat_settings, current_pane: @form_metadata.current_pane)
+
+%nav.mca_resource_edit_nav
+  - @form_metadata.navbar_categories.each do |category|
+    = audio_admin_edit_nav_button(audio: @audio, category: category, current_pane: @form_metadata.current_pane)
+
+.mca_audio_edit.mca_resource_pane
+  = render @form_metadata.partial_name, audio: @audio, selectable: @form_metadata.selectables

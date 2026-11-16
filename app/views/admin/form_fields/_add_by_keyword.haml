@@ -1,0 +1,5 @@
+%fieldset.mca_form_attribute
+  = form.label :keywords, 'Keyword title', class: :mca_form_label
+  = form.select :keywords, form_SlimSelect_options(selectable, text_method), { include_blank: false }, { class: :mca_form_input_select }
+  %script
+    = "new SlimSelect({ select: '\##{form.field_id(:keywords)}', settings: { modal: 'on' } });".html_safe
